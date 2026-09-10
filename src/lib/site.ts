@@ -33,6 +33,12 @@ export const serviceAreas = [
   "St. Augustine",
 ];
 
+export const projectTypeOptions = [
+  "Residential",
+  "Commercial",
+  "Contractor / Builder Partnership",
+] as const;
+
 export const serviceOptions = [
   "Tile Installation",
   "LVP / Vinyl Flooring",
@@ -43,6 +49,8 @@ export const serviceOptions = [
   "Drywall",
   "Painting",
   "Demolition",
+  "Commercial Project",
+  "Contractor / Builder Partnership",
   "Other Remodeling",
 ];
 
@@ -60,10 +68,10 @@ export const navLinks = [
 
 export const localBusinessSchema = {
   "@context": "https://schema.org",
-  "@type": "GeneralContractor",
+  "@type": "HomeAndConstructionBusiness",
   name: site.name,
   description:
-    "Tile installation, LVP and vinyl flooring, bathroom and kitchen remodeling in Jacksonville and Northeast Florida.",
+    "Tile installation, LVP and vinyl flooring, bathroom and kitchen remodeling for residential and commercial projects in Jacksonville and Northeast Florida.",
   telephone: "+1-904-554-7517",
   email: site.email,
   areaServed: serviceAreas,
@@ -74,5 +82,6 @@ export const localBusinessSchema = {
     "Kitchen remodeling",
     "Floor leveling",
     "Paver installation",
+    "Commercial flooring and remodeling",
   ],
 };
