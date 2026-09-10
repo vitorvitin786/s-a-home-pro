@@ -10,33 +10,120 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as BathroomRemodelingJacksonvilleRouteImport } from './routes/bathroom-remodeling-jacksonville'
+import { Route as FloorPreparationLevelingRouteImport } from './routes/floor-preparation-leveling'
+import { Route as KitchenRemodelingJacksonvilleRouteImport } from './routes/kitchen-remodeling-jacksonville'
+import { Route as LvpVinylFlooringJacksonvilleRouteImport } from './routes/lvp-vinyl-flooring-jacksonville'
+import { Route as PaversRouteImport } from './routes/pavers'
+import { Route as TileInstallationJacksonvilleRouteImport } from './routes/tile-installation-jacksonville'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const BathroomRemodelingJacksonvilleRoute =
+  BathroomRemodelingJacksonvilleRouteImport.update({
+    id: '/bathroom-remodeling-jacksonville',
+    path: '/bathroom-remodeling-jacksonville',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const FloorPreparationLevelingRoute =
+  FloorPreparationLevelingRouteImport.update({
+    id: '/floor-preparation-leveling',
+    path: '/floor-preparation-leveling',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const KitchenRemodelingJacksonvilleRoute =
+  KitchenRemodelingJacksonvilleRouteImport.update({
+    id: '/kitchen-remodeling-jacksonville',
+    path: '/kitchen-remodeling-jacksonville',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LvpVinylFlooringJacksonvilleRoute =
+  LvpVinylFlooringJacksonvilleRouteImport.update({
+    id: '/lvp-vinyl-flooring-jacksonville',
+    path: '/lvp-vinyl-flooring-jacksonville',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const PaversRoute = PaversRouteImport.update({
+  id: '/pavers',
+  path: '/pavers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TileInstallationJacksonvilleRoute =
+  TileInstallationJacksonvilleRouteImport.update({
+    id: '/tile-installation-jacksonville',
+    path: '/tile-installation-jacksonville',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/bathroom-remodeling-jacksonville': typeof BathroomRemodelingJacksonvilleRoute
+  '/floor-preparation-leveling': typeof FloorPreparationLevelingRoute
+  '/kitchen-remodeling-jacksonville': typeof KitchenRemodelingJacksonvilleRoute
+  '/lvp-vinyl-flooring-jacksonville': typeof LvpVinylFlooringJacksonvilleRoute
+  '/pavers': typeof PaversRoute
+  '/tile-installation-jacksonville': typeof TileInstallationJacksonvilleRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/bathroom-remodeling-jacksonville': typeof BathroomRemodelingJacksonvilleRoute
+  '/floor-preparation-leveling': typeof FloorPreparationLevelingRoute
+  '/kitchen-remodeling-jacksonville': typeof KitchenRemodelingJacksonvilleRoute
+  '/lvp-vinyl-flooring-jacksonville': typeof LvpVinylFlooringJacksonvilleRoute
+  '/pavers': typeof PaversRoute
+  '/tile-installation-jacksonville': typeof TileInstallationJacksonvilleRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/bathroom-remodeling-jacksonville': typeof BathroomRemodelingJacksonvilleRoute
+  '/floor-preparation-leveling': typeof FloorPreparationLevelingRoute
+  '/kitchen-remodeling-jacksonville': typeof KitchenRemodelingJacksonvilleRoute
+  '/lvp-vinyl-flooring-jacksonville': typeof LvpVinylFlooringJacksonvilleRoute
+  '/pavers': typeof PaversRoute
+  '/tile-installation-jacksonville': typeof TileInstallationJacksonvilleRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/bathroom-remodeling-jacksonville'
+    | '/floor-preparation-leveling'
+    | '/kitchen-remodeling-jacksonville'
+    | '/lvp-vinyl-flooring-jacksonville'
+    | '/pavers'
+    | '/tile-installation-jacksonville'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/bathroom-remodeling-jacksonville'
+    | '/floor-preparation-leveling'
+    | '/kitchen-remodeling-jacksonville'
+    | '/lvp-vinyl-flooring-jacksonville'
+    | '/pavers'
+    | '/tile-installation-jacksonville'
+  id:
+    | '__root__'
+    | '/'
+    | '/bathroom-remodeling-jacksonville'
+    | '/floor-preparation-leveling'
+    | '/kitchen-remodeling-jacksonville'
+    | '/lvp-vinyl-flooring-jacksonville'
+    | '/pavers'
+    | '/tile-installation-jacksonville'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BathroomRemodelingJacksonvilleRoute: typeof BathroomRemodelingJacksonvilleRoute
+  FloorPreparationLevelingRoute: typeof FloorPreparationLevelingRoute
+  KitchenRemodelingJacksonvilleRoute: typeof KitchenRemodelingJacksonvilleRoute
+  LvpVinylFlooringJacksonvilleRoute: typeof LvpVinylFlooringJacksonvilleRoute
+  PaversRoute: typeof PaversRoute
+  TileInstallationJacksonvilleRoute: typeof TileInstallationJacksonvilleRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +135,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/bathroom-remodeling-jacksonville': {
+      id: '/bathroom-remodeling-jacksonville'
+      path: '/bathroom-remodeling-jacksonville'
+      fullPath: '/bathroom-remodeling-jacksonville'
+      preLoaderRoute: typeof BathroomRemodelingJacksonvilleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/floor-preparation-leveling': {
+      id: '/floor-preparation-leveling'
+      path: '/floor-preparation-leveling'
+      fullPath: '/floor-preparation-leveling'
+      preLoaderRoute: typeof FloorPreparationLevelingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/kitchen-remodeling-jacksonville': {
+      id: '/kitchen-remodeling-jacksonville'
+      path: '/kitchen-remodeling-jacksonville'
+      fullPath: '/kitchen-remodeling-jacksonville'
+      preLoaderRoute: typeof KitchenRemodelingJacksonvilleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/lvp-vinyl-flooring-jacksonville': {
+      id: '/lvp-vinyl-flooring-jacksonville'
+      path: '/lvp-vinyl-flooring-jacksonville'
+      fullPath: '/lvp-vinyl-flooring-jacksonville'
+      preLoaderRoute: typeof LvpVinylFlooringJacksonvilleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pavers': {
+      id: '/pavers'
+      path: '/pavers'
+      fullPath: '/pavers'
+      preLoaderRoute: typeof PaversRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tile-installation-jacksonville': {
+      id: '/tile-installation-jacksonville'
+      path: '/tile-installation-jacksonville'
+      fullPath: '/tile-installation-jacksonville'
+      preLoaderRoute: typeof TileInstallationJacksonvilleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BathroomRemodelingJacksonvilleRoute: BathroomRemodelingJacksonvilleRoute,
+  FloorPreparationLevelingRoute: FloorPreparationLevelingRoute,
+  KitchenRemodelingJacksonvilleRoute: KitchenRemodelingJacksonvilleRoute,
+  LvpVinylFlooringJacksonvilleRoute: LvpVinylFlooringJacksonvilleRoute,
+  PaversRoute: PaversRoute,
+  TileInstallationJacksonvilleRoute: TileInstallationJacksonvilleRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
