@@ -7,7 +7,13 @@ const fieldClass =
   "w-full rounded-sm border border-input bg-background px-4 py-3 text-base outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
 const labelClass = "block text-sm font-semibold text-foreground";
 
-export function EstimateForm({ defaultService }: { defaultService?: string }) {
+export function EstimateForm({
+  defaultService,
+  compact = false,
+}: {
+  defaultService?: string;
+  compact?: boolean;
+}) {
   const [submitted, setSubmitted] = useState(false);
 
   if (submitted) {
@@ -16,7 +22,8 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
         <CheckCircle2 className="mx-auto size-12 text-primary" aria-hidden="true" />
         <h3 className="mt-4 text-xl">Your estimate request is ready</h3>
         <p className="mx-auto mt-3 max-w-md text-muted-foreground">
-          Your email app should have opened with the project details. Send the email to finish your request.
+          Your email app should have opened with the project details. Send the email to finish your
+          request.
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
           If email is not available, call or text {site.phoneDisplay} directly.
@@ -72,54 +79,156 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
     >
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
-          <label className={labelClass} htmlFor="fullName">Full Name *</label>
-          <input id="fullName" name="fullName" autoComplete="name" required className={`mt-2 ${fieldClass}`} />
+          <label className={labelClass} htmlFor="fullName">
+            Full Name *
+          </label>
+          <input
+            id="fullName"
+            name="fullName"
+            autoComplete="name"
+            required
+            className={`mt-2 ${fieldClass}`}
+          />
         </div>
         <div>
-          <label className={labelClass} htmlFor="phone">Phone Number *</label>
-          <input id="phone" name="phone" type="tel" inputMode="tel" autoComplete="tel" required className={`mt-2 ${fieldClass}`} />
+          <label className={labelClass} htmlFor="phone">
+            Phone Number *
+          </label>
+          <input
+            id="phone"
+            name="phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            required
+            className={`mt-2 ${fieldClass}`}
+          />
         </div>
         <div>
-          <label className={labelClass} htmlFor="email">Email *</label>
-          <input id="email" name="email" type="email" autoComplete="email" required className={`mt-2 ${fieldClass}`} />
+          <label className={labelClass} htmlFor="email">
+            Email *
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autoComplete="email"
+            required
+            className={`mt-2 ${fieldClass}`}
+          />
         </div>
+        {!compact && (
+          <div>
+            <label className={labelClass} htmlFor="zip">
+              ZIP Code *
+            </label>
+            <input
+              id="zip"
+              name="zip"
+              inputMode="numeric"
+              autoComplete="postal-code"
+              pattern="[0-9]{5}"
+              maxLength={5}
+              required
+              className={`mt-2 ${fieldClass}`}
+            />
+          </div>
+        )}
+        {!compact && (
+          <div>
+            <label className={labelClass} htmlFor="address">
+              Project Address <span className="font-normal text-muted-foreground">(optional)</span>
+            </label>
+            <input
+              id="address"
+              name="address"
+              autoComplete="street-address"
+              className={`mt-2 ${fieldClass}`}
+            />
+          </div>
+        )}
         <div>
-          <label className={labelClass} htmlFor="zip">ZIP Code *</label>
-          <input id="zip" name="zip" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{5}" maxLength={5} required className={`mt-2 ${fieldClass}`} />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="address">Project Address <span className="font-normal text-muted-foreground">(optional)</span></label>
-          <input id="address" name="address" autoComplete="street-address" className={`mt-2 ${fieldClass}`} />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="service">Service Needed *</label>
-          <select id="service" name="service" required defaultValue={defaultService ?? ""} className={`mt-2 ${fieldClass}`}>
-            <option value="" disabled>Select a service</option>
-            {serviceOptions.map((s) => <option key={s} value={s}>{s}</option>)}
+          <label className={labelClass} htmlFor="service">
+            Service Needed *
+          </label>
+          <select
+            id="service"
+            name="service"
+            required
+            defaultValue={defaultService ?? ""}
+            className={`mt-2 ${fieldClass}`}
+          >
+            <option value="" disabled>
+              Select a service
+            </option>
+            {serviceOptions.map((s) => (
+              <option key={s} value={s}>
+                {s}
+              </option>
+            ))}
           </select>
         </div>
-        <div>
-          <label className={labelClass} htmlFor="sqft">Approximate Square Footage</label>
-          <input id="sqft" name="sqft" inputMode="numeric" placeholder="e.g. 850" className={`mt-2 ${fieldClass}`} />
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="contactMethod">Preferred Contact Method</label>
-          <select id="contactMethod" name="contactMethod" defaultValue="Call" className={`mt-2 ${fieldClass}`}>
-            <option>Call</option><option>Text</option><option>Email</option>
-          </select>
-        </div>
-        <div>
-          <label className={labelClass} htmlFor="startDate">Preferred Start Date</label>
-          <input id="startDate" name="startDate" type="date" className={`mt-2 ${fieldClass}`} />
-        </div>
+        {!compact && (
+          <div>
+            <label className={labelClass} htmlFor="sqft">
+              Approximate Square Footage
+            </label>
+            <input
+              id="sqft"
+              name="sqft"
+              inputMode="numeric"
+              placeholder="e.g. 850"
+              className={`mt-2 ${fieldClass}`}
+            />
+          </div>
+        )}
+        {!compact && (
+          <div>
+            <label className={labelClass} htmlFor="contactMethod">
+              Preferred Contact Method
+            </label>
+            <select
+              id="contactMethod"
+              name="contactMethod"
+              defaultValue="Call"
+              className={`mt-2 ${fieldClass}`}
+            >
+              <option>Call</option>
+              <option>Text</option>
+              <option>Email</option>
+            </select>
+          </div>
+        )}
+        {!compact && (
+          <div>
+            <label className={labelClass} htmlFor="startDate">
+              Preferred Start Date
+            </label>
+            <input id="startDate" name="startDate" type="date" className={`mt-2 ${fieldClass}`} />
+          </div>
+        )}
         <div className="sm:col-span-2">
-          <label className={labelClass} htmlFor="description">Project Description *</label>
-          <textarea id="description" name="description" rows={5} required placeholder="Tell us about the rooms, materials, current flooring and what you'd like done." className={`mt-2 ${fieldClass}`} />
+          <label className={labelClass} htmlFor="description">
+            Project Description *
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            rows={5}
+            required
+            placeholder="Tell us about the rooms, materials, current flooring and what you'd like done."
+            className={`mt-2 ${fieldClass}`}
+          />
         </div>
-        <div className="sm:col-span-2 rounded-sm border border-dashed border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
-          <p className="font-semibold text-foreground">Have project photos?</p>
-          <p className="mt-1">After your email opens, attach your photos there before sending. The website does not upload or store customer photos yet.</p>
-        </div>
+        {!compact && (
+          <div className="sm:col-span-2 rounded-sm border border-dashed border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+            <p className="font-semibold text-foreground">Have project photos?</p>
+            <p className="mt-1">
+              After your email opens, attach your photos there before sending. The website does not
+              upload or store customer photos yet.
+            </p>
+          </div>
+        )}
       </div>
 
       <Button type="submit" variant="cta" size="xl" className="mt-7 w-full">

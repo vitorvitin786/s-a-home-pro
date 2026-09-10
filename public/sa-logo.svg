@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 620 390" role="img" aria-labelledby="title">
+  <title id="title">S&amp;A Homes Services</title>
+  <g fill="none" stroke="#e7e7e7" stroke-width="5">
+    <path fill="#e7e7e7" d="M249 41l48-26 50 28v20l-50-27-48 26z" stroke="none"/>
+    <path fill="#e7e7e7" d="M249 41v134h13V95l54-31v-21l-19 11V36z" stroke="none"/>
+    <path fill="#e7e7e7" d="M316 64l42 24v87h-13v-74l-29-17z" stroke="none"/>
+    <path d="M263 175V95l53-31v20l-40 23v68M304 175v-76l41 23v53M183 175V95l28-25v105M211 175v-66l24 21v45M166 175v-58h20v58M232 175v-42h40v42M409 175V95l-28-25v105M381 175v-66l-24 21v45M426 175v-58h-20v58M360 175v-42h40v42"/>
+    <path d="M105 177h174l18 22 18-22h200M105 292h174l18-20 18 20h200M107 177c95 8 285 8 406 0M107 292c95-8 285-8 406 0" stroke-width="2"/>
+  </g>
+  <text x="310" y="253" fill="#e7e7e7" text-anchor="middle" font-family="Georgia,serif" font-size="47" letter-spacing="12">S&amp;A HOMES SERVICES</text>
+  <text x="310" y="330" fill="#e7e7e7" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" letter-spacing="9">TILE • FLOORING • REMODELING</text>
+</svg>
