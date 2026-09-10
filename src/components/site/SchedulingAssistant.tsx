@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ArrowRight, CalendarDays, CheckCircle2, MessageCircle, X } from "lucide-react";
 import { serviceOptions } from "@/lib/site";
 import { submitLead } from "@/lib/leads";
@@ -32,6 +32,21 @@ const prompts = [
   "Briefly tell us what you’d like done.",
 ] as const;
 
+function getToday() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+function validContact(value: string) {
+  const trimmed = value.trim();
+  const looksLikeEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+  const digits = trimmed.replace(/\D/g, "");
+  return looksLikeEmail || digits.length >= 10;
+}
+
 export function SchedulingAssistant() {
   const [open, setOpen] = useState(false);
   const [step, setStep] = useState(0);
@@ -40,6 +55,7 @@ export function SchedulingAssistant() {
   const [sending, setSending] = useState(false);
   const [sent, setSent] = useState(false);
   const [error, setError] = useState("");
+  const today = useMemo(getToday, []);
 
   const history = [
     details.service,
@@ -51,8 +67,21 @@ export function SchedulingAssistant() {
   ];
 
   function advance(field: keyof Details, nextValue: string) {
-    if (!nextValue.trim()) return;
-    setDetails((current) => ({ ...current, [field]: nextValue.trim() }));
+    const trimmed = nextValue.trim();
+    if (!trimmed) return;
+
+    if (field === "contact" && !validContact(trimmed)) {
+      setError("Enter a valid phone number or email address.");
+      return;
+    }
+
+    if (field === "zip" && !/^\d{5}$/.test(trimmed)) {
+      setError("Enter a valid 5-digit ZIP code.");
+      return;
+    }
+
+    setError("");
+    setDetails((current) => ({ ...current, [field]: trimmed }));
     setValue("");
     setStep((current) => current + 1);
   }
@@ -142,8 +171,8 @@ export function SchedulingAssistant() {
               <div className="border border-white/15 p-4">
                 <p className="mb-3 font-medium">{prompts[step]}</p>
                 {step === 0 ? (
-                  <div className="grid gap-2">
-                    {serviceOptions.slice(0, 6).map((service) => (
+                  <div className="grid max-h-72 gap-2 overflow-y-auto pr-1">
+                    {serviceOptions.map((service) => (
                       <button
                         key={service}
                         type="button"
@@ -153,38 +182,37 @@ export function SchedulingAssistant() {
                         {service}
                       </button>
                     ))}
-                    <button
-                      type="button"
-                      onClick={() => advance("service", "Other Remodeling")}
-                      className="border border-white/20 px-3 py-2 text-left hover:bg-white hover:text-black"
-                    >
-                      Other project
-                    </button>
                   </div>
                 ) : step === 4 ? (
                   <div className="grid grid-cols-2 gap-2">
                     <input
                       type="date"
+                      min={today}
                       value={details.date}
-                      onChange={(event) =>
-                        setDetails((current) => ({ ...current, date: event.target.value }))
-                      }
+                      onChange={(event) => {
+                        setError("");
+                        setDetails((current) => ({ ...current, date: event.target.value }));
+                      }}
                       className="min-w-0 border border-white/20 bg-transparent p-3 [color-scheme:dark]"
                       aria-label="Preferred date"
                     />
                     <input
                       type="time"
                       value={details.time}
-                      onChange={(event) =>
-                        setDetails((current) => ({ ...current, time: event.target.value }))
-                      }
+                      onChange={(event) => {
+                        setError("");
+                        setDetails((current) => ({ ...current, time: event.target.value }));
+                      }}
                       className="min-w-0 border border-white/20 bg-transparent p-3 [color-scheme:dark]"
                       aria-label="Preferred time"
                     />
                     <button
                       type="button"
                       disabled={!details.date || !details.time}
-                      onClick={() => setStep(5)}
+                      onClick={() => {
+                        setError("");
+                        setStep(5);
+                      }}
                       className="col-span-2 flex items-center justify-center gap-2 bg-white px-4 py-3 font-bold uppercase tracking-wide text-black disabled:opacity-40"
                     >
                       Continue <ArrowRight className="size-4" />
@@ -195,7 +223,10 @@ export function SchedulingAssistant() {
                     {step === 5 ? (
                       <textarea
                         value={value}
-                        onChange={(event) => setValue(event.target.value)}
+                        onChange={(event) => {
+                          setError("");
+                          setValue(event.target.value);
+                        }}
                         rows={3}
                         placeholder="Project details"
                         className="min-w-0 flex-1 resize-none border border-white/20 bg-transparent p-3 outline-none focus:border-white"
@@ -203,7 +234,10 @@ export function SchedulingAssistant() {
                     ) : (
                       <input
                         value={value}
-                        onChange={(event) => setValue(event.target.value)}
+                        onChange={(event) => {
+                          setError("");
+                          setValue(event.target.value);
+                        }}
                         onKeyDown={(event) => {
                           if (event.key === "Enter") {
                             event.preventDefault();
@@ -212,6 +246,7 @@ export function SchedulingAssistant() {
                           }
                         }}
                         inputMode={step === 2 ? "tel" : step === 3 ? "numeric" : "text"}
+                        maxLength={step === 3 ? 5 : undefined}
                         placeholder={
                           step === 2
                             ? "Phone or email"
