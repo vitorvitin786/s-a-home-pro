@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { CheckCircle2, Mail, MessageSquare, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { serviceOptions, site } from "@/lib/site";
+import { projectTypeOptions, serviceOptions, site } from "@/lib/site";
 import { submitLead } from "@/lib/leads";
 
 const fieldClass =
   "w-full rounded-sm border border-input bg-background px-4 py-3 text-base outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
 const labelClass = "block text-sm font-semibold text-foreground";
+
+function getToday() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
 
 export function EstimateForm({ defaultService }: { defaultService?: string }) {
   const [submitted, setSubmitted] = useState(false);
@@ -23,7 +31,7 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
           information and contact you about the next step.
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
-          If email is not available, call or text {site.phoneDisplay} directly.
+          If you need a faster response, call or text {site.phoneDisplay} directly.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild variant="cta" size="lg">
@@ -105,6 +113,24 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
           />
         </div>
         <div>
+          <label className={labelClass} htmlFor="projectType">
+            Project Type *
+          </label>
+          <select
+            id="projectType"
+            name="projectType"
+            required
+            defaultValue="Residential"
+            className={`mt-2 ${fieldClass}`}
+          >
+            {projectTypeOptions.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
           <label className={labelClass} htmlFor="zip">
             ZIP Code *
           </label>
@@ -114,12 +140,13 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
             inputMode="numeric"
             autoComplete="postal-code"
             pattern="[0-9]{5}"
+            title="Enter a 5-digit ZIP code"
             maxLength={5}
             required
             className={`mt-2 ${fieldClass}`}
           />
         </div>
-        <div>
+        <div className="sm:col-span-2">
           <label className={labelClass} htmlFor="address">
             Project Address <span className="font-normal text-muted-foreground">(optional)</span>
           </label>
@@ -182,7 +209,13 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
           <label className={labelClass} htmlFor="startDate">
             Preferred Start Date
           </label>
-          <input id="startDate" name="startDate" type="date" className={`mt-2 ${fieldClass}`} />
+          <input
+            id="startDate"
+            name="startDate"
+            type="date"
+            min={getToday()}
+            className={`mt-2 ${fieldClass}`}
+          />
         </div>
         <div className="sm:col-span-2">
           <label className={labelClass} htmlFor="description">
