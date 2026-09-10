@@ -1,20 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageSquare, Phone, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { site } from "@/lib/site";
-import { faqs, faqSchema } from "@/data/faq";
+import { ArrowRight, Building2, Check, HardHat, HomeIcon, MapPin, Quote, Star } from "lucide-react";
 import { EstimateForm } from "@/components/site/EstimateForm";
-import { CtaBand } from "@/components/site/CtaBand";
-import {
-  CheckList,
-  FaqSection,
-  HowItWorks,
-  ReviewsSection,
-  SectionHeading,
-  ServiceAreaSection,
-  WhyChoose,
-} from "@/components/site/Sections";
-import heroImg from "@/assets/tile-installer-jacksonville-fl.jpg";
+import { BrandLogo } from "@/components/site/BrandLogo";
+import heroImg from "@/assets/kitchen-remodeling-jacksonville.jpg";
 import tileImg from "@/assets/tile-shower-remodel-jacksonville.jpg";
 import lvpImg from "@/assets/lvp-vinyl-flooring-jacksonville.jpg";
 import kitchenImg from "@/assets/kitchen-remodeling-jacksonville.jpg";
@@ -22,310 +10,319 @@ import kitchenImg from "@/assets/kitchen-remodeling-jacksonville.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tile & Flooring Contractor Jacksonville FL | S&A Homes Services" },
+      { title: "Luxury Remodeling Jacksonville | S&A Homes Services" },
       {
         name: "description",
         content:
-          "Professional tile installation, LVP/vinyl flooring and complete home remodeling in Jacksonville & Northeast Florida. 10+ years experience. Free estimates — (904) 554-7517.",
+          "Residential and commercial tile, flooring, kitchen and bathroom remodeling across Jacksonville and Northeast Florida.",
       },
-      { property: "og:title", content: "Tile & Flooring Contractor Jacksonville FL | S&A Homes Services" },
-      {
-        property: "og:description",
-        content:
-          "Tile, LVP/vinyl flooring, bathroom and kitchen remodeling in Jacksonville, FL. Free estimates. Call or text (904) 554-7517.",
-      },
-      { property: "og:url", content: "/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(faqSchema) }],
   }),
   component: Home,
 });
 
 const services = [
-  {
-    title: "Tile Installation",
-    to: "/tile-installation-jacksonville",
-    text: "Porcelain, ceramic and large-format tile for floors, walls, showers and backsplashes — set flat, sealed and finished right.",
-    tag: "Specialty",
-  },
-  {
-    title: "LVP & Vinyl Flooring",
-    to: "/lvp-vinyl-flooring-jacksonville",
-    text: "Waterproof luxury vinyl plank installed over properly prepped subfloors, with clean transitions and baseboards.",
-    tag: "Specialty",
-  },
-  {
-    title: "Bathroom Remodeling",
-    to: "/bathroom-remodeling-jacksonville",
-    text: "Complete bathroom renovations with custom tile showers, waterproofing, vanities, flooring and finish work.",
-  },
-  {
-    title: "Kitchen Remodeling",
-    to: "/kitchen-remodeling-jacksonville",
-    text: "Cabinets, backsplash, tile, flooring, countertop coordination, drywall and painting from demo to finish.",
-  },
-  {
-    title: "Floor Prep & Self-Leveling",
-    to: "/floor-preparation-leveling",
-    text: "Concrete prep, uneven floor correction and self-leveling so tile and LVP install flat and stay flat.",
-  },
-  {
-    title: "Pavers & Outdoor Projects",
-    to: "/pavers",
-    text: "Paver patios, walkways and outdoor improvements built on properly compacted base.",
-  },
-  {
-    title: "Drywall & Painting",
-    to: "/remodeling-services",
-    text: "Drywall installation, wall repair and interior painting as part of your remodeling finish work.",
-  },
-  {
-    title: "Demolition",
-    to: "/remodeling-services",
-    text: "Flooring and tile removal, bathroom and kitchen demolition, prep and debris cleanup.",
-  },
-  {
-    title: "General Home Remodeling",
-    to: "/remodeling-services",
-    text: "Project not listed? Talk to us. If it involves improving your home, we can help you figure out the best way to get it done.",
-  },
+  [
+    "Tile Installation",
+    "Precision tilework for floors, showers, walls and backsplashes.",
+    tileImg,
+    "/tile-installation-jacksonville",
+  ],
+  [
+    "LVP / Vinyl Flooring",
+    "Durable luxury flooring with expert subfloor preparation.",
+    lvpImg,
+    "/lvp-vinyl-flooring-jacksonville",
+  ],
+  [
+    "Bathroom Remodeling",
+    "Refined, functional bathrooms built around your vision.",
+    tileImg,
+    "/bathroom-remodeling-jacksonville",
+  ],
+  [
+    "Kitchen Remodeling",
+    "Elevated kitchens with thoughtful details and fine finishes.",
+    kitchenImg,
+    "/kitchen-remodeling-jacksonville",
+  ],
+  [
+    "Floor Leveling",
+    "A flawless foundation for lasting, beautiful new flooring.",
+    lvpImg,
+    "/floor-preparation-leveling",
+  ],
+  [
+    "Commercial Projects",
+    "Reliable build-outs, renovations and flooring for your business.",
+    heroImg,
+    "/contact",
+  ],
 ] as const;
+
+const reviews = [
+  [
+    "Exceptional from start to finish",
+    "S&A transformed our bathroom. Every line is clean, every detail feels intentional, and the crew treated our home with real care.",
+    "Jacksonville Homeowner",
+  ],
+  [
+    "Professional and dependable",
+    "Communication was excellent and the finished flooring exceeded our expectations. The entire project stayed organized and on schedule.",
+    "Northeast Florida Client",
+  ],
+  [
+    "A partner we can count on",
+    "They understand the pace and quality commercial work requires. We look forward to bringing S&A onto future projects.",
+    "Local Project Partner",
+  ],
+];
 
 function Home() {
   return (
-    <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-charcoal text-charcoal-foreground">
-        <img
-          src={heroImg}
-          alt="Tile installer spreading thinset for large-format floor tile on a Jacksonville FL remodel"
-          width={1600}
-          height={1104}
-          className="absolute inset-0 size-full object-cover opacity-30"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/85 to-charcoal/40" />
-        <div className="container-x relative py-16 md:py-28">
-          <p className="eyebrow">Jacksonville & Northeast Florida · 10+ Years Experience</p>
-          <h1 className="mt-4 max-w-4xl text-4xl leading-[1.05] md:text-6xl">
-            Quality Remodeling.
-            <br />
-            Professional Tile &amp; Flooring.
-            <br />
-            <span className="text-primary">Built to Last.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-charcoal-foreground/85 md:text-lg">
-            S&amp;A Homes Services provides professional tile, LVP/vinyl flooring and complete home
-            remodeling services throughout Jacksonville and Northeast Florida. More than 10 years of
-            hands-on experience and attention to every detail.
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="cta" size="xl">
-              <Link to="/contact">Get a Free Estimate</Link>
-            </Button>
-            <Button asChild variant="outlineLight" size="xl">
-              <a href={site.telHref}>
-                <Phone aria-hidden="true" /> Call or Text {site.phoneDisplay}
+    <div className="luxury-home">
+      <section className="hero-luxury">
+        <div className="hero-glow" />
+        <div className="container-x hero-grid">
+          <div className="hero-copy">
+            <BrandLogo className="hero-logo" />
+            <p className="lux-eyebrow">Residential &amp; Commercial Projects</p>
+            <h1>
+              S&amp;A Homes <em>Services</em>
+            </h1>
+            <p className="hero-services">
+              Tile <span>•</span> Flooring <span>•</span> Remodeling
+            </p>
+            <p className="hero-lede">
+              Trusted craftsmanship for homes and businesses across Jacksonville / Northeast
+              Florida.
+            </p>
+            <div className="hero-actions">
+              <a href="#estimate" className="lux-btn">
+                Get a Free Estimate <ArrowRight />
               </a>
-            </Button>
+              <Link to="/portfolio" className="lux-btn secondary">
+                View Our Work
+              </Link>
+            </div>
           </div>
-          <ul className="mt-10 grid max-w-3xl gap-3 text-sm sm:grid-cols-3">
-            {["Free, clear estimates", "Tile & LVP specialists", "Clean, organized job sites"].map(
-              (t) => (
-                <li
-                  key={t}
-                  className="rounded-sm border border-charcoal-foreground/15 bg-charcoal-foreground/5 px-4 py-3 font-semibold"
-                >
-                  {t}
-                </li>
-              ),
-            )}
-          </ul>
+          <div className="hero-visual">
+            <img src={heroImg} alt="Luxury remodeled kitchen by S&A Homes Services" />
+            <div className="image-frame" />
+            <div className="experience-mark">
+              <strong>10+</strong>
+              <span>
+                Years of
+                <br />
+                Craftsmanship
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="container-x trust-grid">
+          {[
+            [HomeIcon, "Residential & Commercial"],
+            [Building2, "We Accept Commercial Work"],
+            [HardHat, "Looking for Contractors & General Contractors"],
+            [MapPin, "Jacksonville / Northeast Florida"],
+          ].map(([Icon, text]) => (
+            <div className="trust-item" key={String(text)}>
+              <Icon />
+              <span>{text as string}</span>
+            </div>
+          ))}
         </div>
       </section>
 
-      {/* SPECIALTIES */}
-      <section className="section">
+      <section id="services" className="lux-section">
         <div className="container-x">
-          <SectionHeading
-            eyebrow="Our Specialties"
-            title="Tile and LVP/vinyl flooring done at a higher standard"
-            text="These are the two things we install most — and the two things homeowners most often call us to fix after someone else rushed the job."
-            center
+          <Heading
+            eyebrow="Our Expertise"
+            title={
+              <>
+                Craftsmanship, <em>Elevated.</em>
+              </>
+            }
+            text="From carefully set tile to full-scale renovations, we deliver precise work and a polished experience."
           />
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {[
-              {
-                img: tileImg,
-                alt: "Custom porcelain tile shower with niche in a remodeled Jacksonville bathroom",
-                title: "Tile Installation",
-                to: "/tile-installation-jacksonville",
-                items: [
-                  "Porcelain, ceramic & large-format tile",
-                  "Shower walls, niches & waterproofing prep",
-                  "Kitchen backsplashes & wall tile",
-                  "Floor preparation, leveling & grout finishing",
-                ],
-              },
-              {
-                img: lvpImg,
-                alt: "Luxury vinyl plank flooring installed in an open Jacksonville living room",
-                title: "LVP & Vinyl Flooring",
-                to: "/lvp-vinyl-flooring-jacksonville",
-                items: [
-                  "Luxury vinyl plank & waterproof flooring",
-                  "Whole-house flooring installation",
-                  "Old flooring removal & subfloor prep",
-                  "Baseboards, transitions & clean finish details",
-                ],
-              },
-            ].map((s) => (
-              <article
-                key={s.title}
-                className="overflow-hidden rounded-md border border-border bg-card shadow-card"
-              >
-                <img
-                  src={s.img}
-                  alt={s.alt}
-                  loading="lazy"
-                  width={1600}
-                  height={1000}
-                  className="h-56 w-full object-cover md:h-72"
-                />
-                <div className="p-6 md:p-8">
-                  <h3 className="text-2xl">{s.title}</h3>
-                  <div className="mt-5">
-                    <CheckList items={s.items} columns={1} />
-                  </div>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <Button asChild variant="cta" size="lg">
-                      <Link to={s.to}>See This Service</Link>
-                    </Button>
-                    <Button asChild variant="outlineDark" size="lg">
-                      <a href={site.smsHref}>
-                        <MessageSquare aria-hidden="true" /> Text Us
-                      </a>
-                    </Button>
-                  </div>
+          <div className="service-grid">
+            {services.map(([title, text, img, to], i) => (
+              <Link to={to} className="service-card" key={title}>
+                <div className="service-image">
+                  <img src={img} alt={title} />
+                  <span>0{i + 1}</span>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ALL SERVICES */}
-      <section className="section bg-sand">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="Full-Service Remodeling"
-            title="Everything we do for Jacksonville homeowners"
-            text="From a single backsplash to a complete bathroom or kitchen renovation."
-            center
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <Link
-                key={s.title}
-                to={s.to}
-                className="group flex flex-col rounded-md border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-lift"
-              >
-                {"tag" in s && s.tag && (
-                  <span className="mb-3 w-fit rounded-sm bg-accent px-2 py-1 font-display text-[10px] font-bold uppercase tracking-widest text-accent-foreground">
-                    {s.tag}
+                <div className="service-content">
+                  <h3>{title}</h3>
+                  <p>{text}</p>
+                  <span className="learn">
+                    Explore Service <ArrowRight />
                   </span>
-                )}
-                <h3 className="text-xl">{s.title}</h3>
-                <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.text}</p>
-                <span className="mt-5 inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-widest text-primary">
-                  Learn more <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </span>
+                </div>
               </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <CtaBand
-        title="Get a free estimate this week"
-        text="Call, text or send your project details and photos. We'll give you a clear price and a realistic schedule."
-      />
+      <section id="residential" className="split-section">
+        <div className="container-x split-grid">
+          <article>
+            <p className="lux-eyebrow">For Your Home</p>
+            <HomeIcon />
+            <h2>
+              Residential <em>Services</em>
+            </h2>
+            <p>
+              Thoughtful renovations, enduring materials and a detail-driven process—designed to
+              make your home feel entirely your own.
+            </p>
+            <ul>
+              {[
+                "Kitchens & bathroom renovations",
+                "Tile, LVP & flooring installation",
+                "Floor preparation & leveling",
+              ].map((x) => (
+                <li key={x}>
+                  <Check />
+                  {x}
+                </li>
+              ))}
+            </ul>
+            <a href="#estimate" className="text-link">
+              Plan Your Home Project <ArrowRight />
+            </a>
+          </article>
+          <article id="commercial" className="commercial-panel">
+            <p className="lux-eyebrow">Built for Business</p>
+            <Building2 />
+            <h2>
+              Commercial <em>Services</em>
+            </h2>
+            <strong>We accept commercial work.</strong>
+            <p>
+              We partner with businesses, property managers, builders and developers for dependable
+              renovations, flooring and finish work.
+            </p>
+            <ul>
+              {[
+                "Commercial flooring & tile",
+                "Tenant improvements & remodels",
+                "Reliable scheduling and communication",
+              ].map((x) => (
+                <li key={x}>
+                  <Check />
+                  {x}
+                </li>
+              ))}
+            </ul>
+            <a href="#partnerships" className="text-link">
+              Discuss a Commercial Project <ArrowRight />
+            </a>
+          </article>
+        </div>
+      </section>
 
-      <WhyChoose />
+      <section id="partnerships" className="partner-section">
+        <div className="container-x partner-inner">
+          <div className="partner-icon">
+            <HardHat />
+          </div>
+          <div>
+            <p className="lux-eyebrow">Trade Partnerships</p>
+            <h2>
+              Looking for Contractors &amp;
+              <br />
+              <em>General Contractors?</em>
+            </h2>
+            <p>
+              S&amp;A Homes Services is open to working with contractors, general contractors,
+              builders and commercial partners on residential and commercial projects. Bring us into
+              your next build for skilled, accountable craftsmanship.
+            </p>
+          </div>
+          <a href="#estimate" className="lux-btn">
+            Let’s Work Together <ArrowRight />
+          </a>
+        </div>
+      </section>
 
-      {/* PORTFOLIO TEASER */}
-      <section className="section bg-sand">
+      <section id="reviews" className="lux-section reviews">
         <div className="container-x">
-          <SectionHeading
-            eyebrow="Our Work"
-            title="Recent tile, flooring & remodeling projects"
-            text="Browse finished showers, floors, kitchens and full remodels across Northeast Florida."
-            center
+          <Heading
+            eyebrow="Client Experiences"
+            title={
+              <>
+                Built on Trust. <em>Finished with Care.</em>
+              </>
+            }
+            text="Our reputation is measured in lasting work and clients who are proud to recommend us."
           />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              { img: tileImg, alt: "Tile shower remodel in Jacksonville FL", label: "Tile & Showers" },
-              { img: lvpImg, alt: "LVP flooring installation in Jacksonville FL", label: "LVP / Vinyl" },
-              { img: kitchenImg, alt: "Kitchen remodel with tile backsplash in Jacksonville FL", label: "Kitchens" },
-            ].map((p) => (
-              <figure key={p.label} className="overflow-hidden rounded-md shadow-card">
-                <img
-                  src={p.img}
-                  alt={p.alt}
-                  loading="lazy"
-                  width={1600}
-                  height={1000}
-                  className="h-64 w-full object-cover"
-                />
-                <figcaption className="bg-card px-5 py-4 font-display text-sm font-bold uppercase tracking-widest">
-                  {p.label}
-                </figcaption>
-              </figure>
+          <div className="review-grid">
+            {reviews.map(([title, text, name]) => (
+              <article key={title}>
+                <Quote />
+                <div className="stars">
+                  {[1, 2, 3, 4, 5].map((n) => (
+                    <Star key={n} />
+                  ))}
+                </div>
+                <h3>{title}</h3>
+                <p>“{text}”</p>
+                <span>{name}</span>
+              </article>
             ))}
           </div>
-          <div className="mt-10 text-center">
-            <Button asChild variant="charcoal" size="xl">
-              <Link to="/portfolio">View Our Full Portfolio</Link>
-            </Button>
-          </div>
         </div>
       </section>
 
-      <HowItWorks />
-      <ServiceAreaSection />
-      <ReviewsSection />
-
-      {/* ESTIMATE */}
-      <section id="estimate" className="section bg-sand">
-        <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+      <section id="estimate" className="estimate-section">
+        <div className="container-x estimate-grid">
           <div>
-            <SectionHeading
-              eyebrow="Free Estimate"
-              title="Request your free estimate"
-              text="Fill out the form and we'll review your project information and contact you about the next step. Prefer to talk? Call or text us directly."
-            />
-            <div className="mt-8 space-y-3">
-              <a
-                href={site.telHref}
-                className="flex items-center gap-3 rounded-sm border border-border bg-card px-5 py-4 font-display font-bold uppercase tracking-wide shadow-card"
-              >
-                <Phone className="size-5 text-primary" aria-hidden="true" /> Call {site.phoneDisplay}
-              </a>
-              <a
-                href={site.smsHref}
-                className="flex items-center gap-3 rounded-sm border border-border bg-card px-5 py-4 font-display font-bold uppercase tracking-wide shadow-card"
-              >
-                <MessageSquare className="size-5 text-primary" aria-hidden="true" /> Text{" "}
-                {site.phoneDisplay}
-              </a>
+            <p className="lux-eyebrow">Start a Conversation</p>
+            <h2>
+              Let’s Build Something <em>Exceptional.</em>
+            </h2>
+            <p>
+              Tell us about your residential or commercial project. We’ll follow up with clear next
+              steps and a free estimate.
+            </p>
+            <div className="estimate-notes">
+              <span>
+                <Check />
+                Free, no-obligation estimate
+              </span>
+              <span>
+                <Check />
+                Residential & commercial projects
+              </span>
+              <span>
+                <Check />
+                Serving Northeast Florida
+              </span>
             </div>
           </div>
-          <EstimateForm />
+          <EstimateForm compact />
         </div>
       </section>
+    </div>
+  );
+}
 
-      <FaqSection items={faqs.slice(0, 8)} title="Tile, flooring & remodeling questions" />
-      <CtaBand />
-    </>
+function Heading({
+  eyebrow,
+  title,
+  text,
+}: {
+  eyebrow: string;
+  title: React.ReactNode;
+  text: string;
+}) {
+  return (
+    <div className="lux-heading">
+      <p className="lux-eyebrow">{eyebrow}</p>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
   );
 }
