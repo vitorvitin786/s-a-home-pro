@@ -11,9 +11,9 @@ export const site = {
   state: "Florida",
   areaLine: "Serving Jacksonville & Northeast Florida",
   social: {
-    facebook: "#",
-    instagram: "#",
-    google: "#",
+    facebook: null,
+    instagram: null,
+    google: null,
   },
 };
 
@@ -66,7 +66,7 @@ export const localBusinessSchema = {
     "Tile installation, LVP and vinyl flooring, bathroom and kitchen remodeling in Jacksonville and Northeast Florida.",
   telephone: "+1-904-554-7517",
   email: site.email,
-  areaServed: serviceAreas.map((a) => ({ "@type": "City", name: `${a}, FL` })),
+  areaServed: serviceAreas,
   knowsAbout: [
     "Tile installation",
     "Luxury vinyl plank flooring",
