@@ -20,9 +20,9 @@ const buttonVariants = cva(
         charcoal:
           "bg-charcoal text-charcoal-foreground font-display font-bold uppercase tracking-wide shadow-card hover:bg-charcoal-soft",
         outlineDark:
-          "border-2 border-charcoal/25 bg-transparent text-charcoal font-display font-bold uppercase tracking-wide hover:bg-charcoal hover:text-charcoal-foreground",
+          "border border-foreground/30 bg-transparent text-foreground font-sans font-semibold uppercase tracking-wide hover:bg-foreground hover:text-background",
         outlineLight:
-          "border-2 border-charcoal-foreground/40 bg-transparent text-charcoal-foreground font-display font-bold uppercase tracking-wide hover:bg-charcoal-foreground hover:text-charcoal",
+          "border border-charcoal-foreground/40 bg-transparent text-charcoal-foreground font-sans font-semibold uppercase tracking-wide hover:bg-charcoal-foreground hover:text-charcoal",
       },
       size: {
         default: "h-9 px-4 py-2",

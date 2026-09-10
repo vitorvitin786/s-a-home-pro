@@ -1,37 +1,23 @@
 import { useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Phone, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { navLinks, site } from "@/lib/site";
+import { navLinks } from "@/lib/site";
 
 export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="sticky top-0 z-50 w-full">
-      <div className="hidden bg-charcoal text-charcoal-foreground md:block">
-        <div className="container-x flex h-10 items-center justify-between text-xs">
-          <p className="tracking-wide">{site.areaLine} · 10+ Years of Hands-On Experience</p>
-          <div className="flex items-center gap-5">
-            <a className="hover:text-primary" href={site.mailHref}>
-              {site.email}
-            </a>
-            <a className="inline-flex items-center gap-2 font-semibold" href={site.telHref}>
-              <Phone className="size-3.5" aria-hidden="true" /> {site.phoneDisplay}
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div className="border-b border-border bg-background/95 backdrop-blur">
-        <div className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
+      <div className="border-b border-white/15 bg-[#111214]/95 backdrop-blur">
+        <div className="container-x flex h-20 items-center justify-between gap-4 md:h-24">
           <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
             <img
               src="/sa-homes-logo.png"
               alt="S&A Homes Services"
               width={180}
               height={134}
-              className="h-12 w-auto object-contain md:h-16"
+              className="h-16 w-auto object-contain md:h-20"
             />
           </Link>
 
@@ -40,8 +26,8 @@ export function Header() {
               <Link
                 key={l.to}
                 to={l.to}
-                className="rounded-sm px-3 py-2 text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
-                activeProps={{ className: "text-primary" }}
+                className="border-b border-transparent px-3 py-3 text-sm font-medium text-white/75 transition-colors hover:text-white"
+                activeProps={{ className: "border-white text-white" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
                 {l.label}
@@ -50,13 +36,8 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-2">
-            <Button asChild variant="outlineDark" size="lg" className="hidden lg:inline-flex">
-              <a href={site.telHref}>
-                <Phone aria-hidden="true" /> {site.phoneDisplay}
-              </a>
-            </Button>
             <Button asChild variant="cta" size="lg" className="hidden sm:inline-flex">
-              <Link to="/contact">Free Estimate</Link>
+              <Link to="/contact">Get a Free Estimate</Link>
             </Button>
             <button
               type="button"

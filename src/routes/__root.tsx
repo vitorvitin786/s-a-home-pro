@@ -14,6 +14,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { MobileCtaBar } from "@/components/site/MobileCtaBar";
+import { SchedulingAssistant } from "@/components/site/SchedulingAssistant";
 import { localBusinessSchema } from "@/lib/site";
 
 function NotFoundComponent() {
@@ -100,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap",
       },
     ],
     scripts: [
@@ -143,6 +144,7 @@ function RootComponent() {
         </main>
         <Footer />
         <MobileCtaBar />
+        <SchedulingAssistant />
       </div>
     </QueryClientProvider>
   );

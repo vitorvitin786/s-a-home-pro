@@ -2,6 +2,7 @@ import { useState } from "react";
 import { CheckCircle2, Mail, MessageSquare, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { serviceOptions, site } from "@/lib/site";
+import { submitLead } from "@/lib/leads";
 
 const fieldClass =
   "w-full rounded-sm border border-input bg-background px-4 py-3 text-base outline-none transition-colors focus:border-primary focus:ring-2 focus:ring-primary/20";
@@ -44,20 +45,10 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
     e.preventDefault();
     const formElement = e.currentTarget;
     const form = new FormData(formElement);
-    form.set("_subject", `New website estimate — ${String(form.get("service") || "Remodeling")}`);
-    form.set("_template", "table");
-    form.set("_captcha", "true");
-    form.set("_replyto", String(form.get("email") || ""));
-
     setSubmitting(true);
     setError("");
     try {
-      const response = await fetch(`https://formsubmit.co/ajax/${site.email}`, {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: form,
-      });
-      if (!response.ok) throw new Error("Estimate request failed");
+      await submitLead(form);
       formElement.reset();
       setSubmitted(true);
     } catch {
@@ -71,9 +62,8 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
     <form
       className="rounded-md border border-border bg-card p-6 shadow-card md:p-8"
       onSubmit={handleSubmit}
-      encType="multipart/form-data"
     >
-      <input type="text" name="_honey" tabIndex={-1} autoComplete="off" className="hidden" />
+      <input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" className="hidden" />
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className={labelClass} htmlFor="fullName">
@@ -207,22 +197,9 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
             className={`mt-2 ${fieldClass}`}
           />
         </div>
-        <div className="sm:col-span-2 rounded-sm border border-dashed border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
-          <p className="font-semibold text-foreground">Have project photos?</p>
-          <label className="mt-3 block" htmlFor="attachment">
-            <span className="sr-only">Attach project photo</span>
-            <input
-              id="attachment"
-              name="attachment"
-              type="file"
-              accept="image/jpeg,image/png,image/webp"
-              className="block w-full text-sm file:mr-4 file:rounded-sm file:border-0 file:bg-primary file:px-4 file:py-2 file:font-semibold file:text-primary-foreground"
-            />
-          </label>
-          <p className="mt-2 text-xs">
-            Optional: JPG, PNG or WebP. For several photos, send them by text after submitting.
-          </p>
-        </div>
+        <p className="sm:col-span-2 text-sm text-muted-foreground">
+          Have photos? Submit the request, then text them to {site.phoneDisplay}.
+        </p>
       </div>
 
       {error && (

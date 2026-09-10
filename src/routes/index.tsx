@@ -1,44 +1,39 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { MessageSquare, Phone, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { site } from "@/lib/site";
-import { faqs, faqSchema } from "@/data/faq";
-import { EstimateForm } from "@/components/site/EstimateForm";
-import { CtaBand } from "@/components/site/CtaBand";
 import {
-  CheckList,
-  FaqSection,
-  HowItWorks,
-  SectionHeading,
-  ServiceAreaSection,
-  WhyChoose,
-} from "@/components/site/Sections";
-import heroImg from "@/assets/tile-installer-jacksonville-fl.jpg";
+  ArrowRight,
+  Building2,
+  CheckCircle2,
+  HardHat,
+  Home as HomeIcon,
+  MapPin,
+  MessageSquare,
+  Phone,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { EstimateForm } from "@/components/site/EstimateForm";
+import { site } from "@/lib/site";
+import heroImg from "@/assets/kitchen-remodeling-jacksonville.jpg";
 import tileImg from "@/assets/tile-shower-remodel-jacksonville.jpg";
 import lvpImg from "@/assets/lvp-vinyl-flooring-jacksonville.jpg";
+import installImg from "@/assets/tile-installer-jacksonville-fl.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tile & Flooring Contractor Jacksonville FL | S&A Homes Services" },
+      { title: "Residential & Commercial Remodeling Jacksonville | S&A Homes Services" },
       {
         name: "description",
         content:
-          "Professional tile installation, LVP/vinyl flooring and complete home remodeling in Jacksonville & Northeast Florida. 10+ years experience. Free estimates — (904) 554-7517.",
+          "Tile, LVP flooring and remodeling for homes and businesses across Jacksonville and Northeast Florida. Free project estimates: (904) 554-7517.",
       },
-      {
-        property: "og:title",
-        content: "Tile & Flooring Contractor Jacksonville FL | S&A Homes Services",
-      },
+      { property: "og:title", content: "S&A Homes Services | Jacksonville Remodeling" },
       {
         property: "og:description",
         content:
-          "Tile, LVP/vinyl flooring, bathroom and kitchen remodeling in Jacksonville, FL. Free estimates. Call or text (904) 554-7517.",
+          "Residential and commercial tile, flooring and remodeling across Northeast Florida.",
       },
-      { property: "og:url", content: "/" },
     ],
     links: [{ rel: "canonical", href: "/" }],
-    scripts: [{ type: "application/ld+json", children: JSON.stringify(faqSchema) }],
   }),
   component: Home,
 });
@@ -46,254 +41,257 @@ export const Route = createFileRoute("/")({
 const services = [
   {
     title: "Tile Installation",
+    text: "Expert tile installation for floors, showers, walls and backsplashes.",
     to: "/tile-installation-jacksonville",
-    text: "Porcelain, ceramic and large-format tile for floors, walls, showers and backsplashes — set flat, sealed and finished right.",
-    tag: "Specialty",
+    image: tileImg,
   },
   {
-    title: "LVP & Vinyl Flooring",
+    title: "LVP / Vinyl Flooring",
+    text: "Durable flooring installed over carefully prepared surfaces.",
     to: "/lvp-vinyl-flooring-jacksonville",
-    text: "Waterproof luxury vinyl plank installed over properly prepped subfloors, with clean transitions and baseboards.",
-    tag: "Specialty",
+    image: lvpImg,
   },
   {
     title: "Bathroom Remodeling",
+    text: "Functional bathrooms, custom showers and lasting finish work.",
     to: "/bathroom-remodeling-jacksonville",
-    text: "Complete bathroom renovations with custom tile showers, waterproofing, vanities, flooring and finish work.",
+    image: tileImg,
   },
   {
     title: "Kitchen Remodeling",
+    text: "Kitchens rebuilt around your space, needs and preferred finish.",
     to: "/kitchen-remodeling-jacksonville",
-    text: "Cabinets, backsplash, tile, flooring, countertop coordination, drywall and painting from demo to finish.",
+    image: heroImg,
   },
   {
-    title: "Floor Prep & Self-Leveling",
+    title: "Floor Leveling",
+    text: "Preparation and leveling for a clean, stable installation.",
     to: "/floor-preparation-leveling",
-    text: "Concrete prep, uneven floor correction and self-leveling so tile and LVP install flat and stay flat.",
-  },
-  {
-    title: "Pavers & Outdoor Projects",
-    to: "/pavers",
-    text: "Paver patios, walkways and outdoor improvements built on properly compacted base.",
-  },
-  {
-    title: "Drywall & Painting",
-    to: "/remodeling-services",
-    text: "Drywall installation, wall repair and interior painting as part of your remodeling finish work.",
-  },
-  {
-    title: "Demolition",
-    to: "/remodeling-services",
-    text: "Flooring and tile removal, bathroom and kitchen demolition, prep and debris cleanup.",
+    image: installImg,
   },
   {
     title: "Commercial Projects",
+    text: "Flooring and remodeling support for businesses and contractors.",
     to: "/commercial",
-    text: "Flooring, tile and remodeling support for businesses, property managers, builders and general contractors.",
-  },
-  {
-    title: "Residential & General Remodeling",
-    to: "/remodeling-services",
-    text: "Project not listed? Talk to us. If it involves improving your home, we can help you figure out the best way to get it done.",
+    image: heroImg,
   },
 ] as const;
 
 function Home() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-charcoal text-charcoal-foreground">
+      <section className="relative min-h-[650px] overflow-hidden border-b border-white/15 bg-[#101113] text-white">
         <img
           src={heroImg}
-          alt="Tile installer spreading thinset for large-format floor tile on a Jacksonville FL remodel"
+          alt="Modern kitchen remodeling project"
           width={1600}
           height={1104}
-          className="absolute inset-0 size-full object-cover opacity-30"
+          className="absolute inset-0 size-full object-cover grayscale"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/85 to-charcoal/40" />
-        <div className="container-x relative py-16 md:py-28">
-          <p className="eyebrow">Quality spaces. Stronger tomorrows.</p>
-          <h1 className="mt-4 max-w-4xl text-4xl leading-[1.05] md:text-6xl">
-            Residential &amp; Commercial Projects
-            <br />
-            <span className="text-primary">Built to a Higher Standard.</span>
-          </h1>
-          <p className="mt-6 max-w-2xl text-charcoal-foreground/85 md:text-lg">
-            Tile, flooring and remodeling for homes and businesses across Jacksonville and Northeast
-            Florida—with more than 10 years of hands-on experience and attention to every detail.
-          </p>
-          <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <Button asChild variant="cta" size="xl">
-              <Link to="/contact">Get a Free Estimate</Link>
-            </Button>
-            <Button asChild variant="outlineLight" size="xl">
-              <a href={site.telHref}>
-                <Phone aria-hidden="true" /> Call or Text {site.phoneDisplay}
-              </a>
-            </Button>
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black/20" />
+        <div className="container-x relative flex min-h-[650px] items-center py-16">
+          <div className="max-w-3xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.35em] text-white/65">
+              Quality spaces. Stronger tomorrows.
+            </p>
+            <h1 className="mt-5 text-5xl leading-[0.95] sm:text-6xl md:text-8xl">
+              S&amp;A Homes Services
+            </h1>
+            <p className="mt-4 font-display text-2xl uppercase tracking-[0.18em] text-white/85 sm:text-3xl">
+              Residential &amp; Commercial Projects
+            </p>
+            <div className="my-6 flex items-center gap-3 text-sm tracking-[0.45em] text-white/85">
+              <span className="h-px w-16 bg-white/55" /> ★★★★★
+            </div>
+            <p className="font-display text-2xl">Tile · Flooring · Remodeling</p>
+            <p className="mt-3 max-w-xl text-base leading-relaxed text-white/72">
+              Trusted craftsmanship for homes and businesses across Jacksonville and Northeast
+              Florida.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="cta" size="xl">
+                <Link to="/contact">
+                  Get a Free Estimate <ArrowRight />
+                </Link>
+              </Button>
+              <Button asChild variant="outlineLight" size="xl">
+                <a href={site.smsHref}>
+                  <MessageSquare /> Text Us
+                </a>
+              </Button>
+            </div>
           </div>
-          <ul className="mt-10 grid max-w-3xl gap-3 text-sm sm:grid-cols-3">
-            {[
-              "Residential & commercial",
-              "Tile & LVP specialists",
-              "Contractor partnerships welcome",
-            ].map((t) => (
-              <li
-                key={t}
-                className="rounded-sm border border-charcoal-foreground/15 bg-charcoal-foreground/5 px-4 py-3 font-semibold"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
+        </div>
+        <div className="absolute bottom-6 right-6 hidden border border-white/30 bg-black/65 px-8 py-5 text-center lg:block">
+          <p className="text-xs uppercase tracking-[0.4em] text-white/60">
+            Build · Remodel · Improve
+          </p>
+          <p className="mt-2 font-display text-xl uppercase tracking-[0.18em]">
+            Always a Higher Standard
+          </p>
         </div>
       </section>
 
-      {/* SPECIALTIES */}
-      <section className="section">
+      <section className="border-b border-white/15 bg-[#17181a] text-white">
+        <div className="container-x grid divide-y divide-white/15 md:grid-cols-4 md:divide-x md:divide-y-0">
+          {[
+            [HomeIcon, "Residential & Commercial"],
+            [Building2, "We Accept Commercial Work"],
+            [HardHat, "Contractors & Builders Welcome"],
+            [MapPin, "Jacksonville / Northeast Florida"],
+          ].map(([Icon, label]) => (
+            <div key={String(label)} className="flex items-center gap-4 px-5 py-6">
+              <Icon className="size-7 shrink-0 stroke-[1.25]" aria-hidden="true" />
+              <p className="text-xs font-semibold uppercase tracking-[0.14em]">{String(label)}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="border-b border-white/15 bg-[#1b1c1e] py-16 text-white md:py-20">
         <div className="container-x">
-          <SectionHeading
-            eyebrow="Our Specialties"
-            title="Tile and LVP/vinyl flooring done at a higher standard"
-            text="These are the two things we install most — and the two things homeowners most often call us to fix after someone else rushed the job."
-            center
-          />
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {[
-              {
-                img: tileImg,
-                alt: "Custom porcelain tile shower with niche in a remodeled Jacksonville bathroom",
-                title: "Tile Installation",
-                to: "/tile-installation-jacksonville",
-                items: [
-                  "Porcelain, ceramic & large-format tile",
-                  "Shower walls, niches & waterproofing prep",
-                  "Kitchen backsplashes & wall tile",
-                  "Floor preparation, leveling & grout finishing",
-                ],
-              },
-              {
-                img: lvpImg,
-                alt: "Luxury vinyl plank flooring installed in an open Jacksonville living room",
-                title: "LVP & Vinyl Flooring",
-                to: "/lvp-vinyl-flooring-jacksonville",
-                items: [
-                  "Luxury vinyl plank & waterproof flooring",
-                  "Whole-house flooring installation",
-                  "Old flooring removal & subfloor prep",
-                  "Baseboards, transitions & clean finish details",
-                ],
-              },
-            ].map((s) => (
-              <article
-                key={s.title}
-                className="overflow-hidden rounded-md border border-border bg-card shadow-card"
-              >
-                <img
-                  src={s.img}
-                  alt={s.alt}
-                  loading="lazy"
-                  width={1600}
-                  height={1000}
-                  className="h-56 w-full object-cover md:h-72"
-                />
-                <div className="p-6 md:p-8">
-                  <h3 className="text-2xl">{s.title}</h3>
-                  <div className="mt-5">
-                    <CheckList items={s.items} columns={1} />
-                  </div>
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    <Button asChild variant="cta" size="lg">
-                      <Link to={s.to}>See This Service</Link>
-                    </Button>
-                    <Button asChild variant="outlineDark" size="lg">
-                      <a href={site.smsHref}>
-                        <MessageSquare aria-hidden="true" /> Text Us
-                      </a>
-                    </Button>
-                  </div>
+          <div className="flex items-center gap-5">
+            <p className="text-xs font-bold uppercase tracking-[0.3em]">Our Services</p>
+            <span className="h-px flex-1 bg-white/25" />
+            <p className="hidden text-xs uppercase tracking-[0.3em] text-white/55 sm:block">
+              Quality work. Lasting value.
+            </p>
+          </div>
+          <div className="mt-8 grid gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+            {services.map((service) => (
+              <article key={service.title} className="group">
+                <div className="overflow-hidden border border-white/20">
+                  <img
+                    src={service.image}
+                    alt=""
+                    loading="lazy"
+                    width={800}
+                    height={650}
+                    className="aspect-[4/3] w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                  />
                 </div>
+                <h2 className="mt-4 font-sans text-sm font-semibold uppercase tracking-[0.08em]">
+                  {service.title}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{service.text}</p>
+                <Link
+                  to={service.to}
+                  className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white"
+                >
+                  Learn More <ArrowRight className="size-4" />
+                </Link>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ALL SERVICES */}
-      <section className="section bg-sand">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="Full-Service Remodeling"
-            title="Everything we do across Northeast Florida"
-            text="From a residential backsplash to commercial flooring and larger remodeling projects."
-            center
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((s) => (
-              <Link
-                key={s.title}
-                to={s.to}
-                className="group flex flex-col rounded-md border border-border bg-card p-6 shadow-card transition-all hover:-translate-y-1 hover:shadow-lift"
-              >
-                {"tag" in s && s.tag && (
-                  <span className="mb-3 w-fit rounded-sm bg-accent px-2 py-1 font-display text-[10px] font-bold uppercase tracking-widest text-accent-foreground">
-                    {s.tag}
-                  </span>
-                )}
-                <h3 className="text-xl">{s.title}</h3>
-                <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.text}</p>
-                <span className="mt-5 inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-widest text-primary">
-                  Learn more{" "}
-                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
-                </span>
-              </Link>
-            ))}
+      <section className="grid border-b border-white/15 bg-black text-white lg:grid-cols-2">
+        <HomeServicePanel
+          title="Residential Services"
+          eyebrow="For Your Home"
+          text="From single-room updates to full renovations, we bring careful preparation and clean execution to every project."
+          image={lvpImg}
+          to="/remodeling-services"
+        />
+        <HomeServicePanel
+          title="Commercial Services"
+          eyebrow="For Your Business"
+          text="We accept commercial work and partner with businesses, property managers, builders and general contractors."
+          image={heroImg}
+          to="/commercial"
+        />
+      </section>
+
+      <section className="border-b border-white/15 bg-[#202123] py-9 text-white">
+        <div className="container-x flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center">
+          <div className="flex max-w-3xl items-start gap-5">
+            <HardHat className="mt-1 size-10 shrink-0 stroke-[1.25]" />
+            <div>
+              <h2 className="text-2xl uppercase tracking-[0.06em]">
+                Looking for contractors &amp; general contractors
+              </h2>
+              <p className="mt-2 text-sm leading-relaxed text-white/65">
+                S&amp;A Homes Services is open to working with contractors, builders and project
+                teams on residential and commercial work.
+              </p>
+            </div>
           </div>
+          <Button asChild variant="cta" size="xl">
+            <Link to="/commercial">
+              Let’s Work Together <ArrowRight />
+            </Link>
+          </Button>
         </div>
       </section>
 
-      <CtaBand
-        title="Get a free estimate this week"
-        text="Call, text or send your project details and photos. We'll give you a clear price and a realistic schedule."
-      />
-
-      <WhyChoose />
-
-      <HowItWorks />
-      <ServiceAreaSection />
-
-      {/* ESTIMATE */}
-      <section id="estimate" className="section bg-sand">
-        <div className="container-x grid gap-10 lg:grid-cols-[1fr_1.3fr] lg:items-start">
+      <section
+        id="estimate"
+        className="border-b border-white/15 bg-[#151618] py-16 text-white md:py-20"
+      >
+        <div className="container-x grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-start">
           <div>
-            <SectionHeading
-              eyebrow="Free Estimate"
-              title="Request your free estimate"
-              text="Fill out the form and we'll review your project information and contact you about the next step. Prefer to talk? Call or text us directly."
-            />
-            <div className="mt-8 space-y-3">
-              <a
-                href={site.telHref}
-                className="flex items-center gap-3 rounded-sm border border-border bg-card px-5 py-4 font-display font-bold uppercase tracking-wide shadow-card"
-              >
-                <Phone className="size-5 text-primary" aria-hidden="true" /> Call{" "}
-                {site.phoneDisplay}
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-white/55">
+              Get a Free Estimate
+            </p>
+            <h2 className="mt-4 text-4xl sm:text-6xl">Let’s Bring Your Vision to Life</h2>
+            <p className="mt-4 text-white/65">Residential or commercial—we’re here to help.</p>
+            <div className="mt-8 space-y-4 text-sm">
+              <a href={site.telHref} className="flex items-center gap-3">
+                <Phone className="size-5" /> {site.phoneDisplay}
               </a>
-              <a
-                href={site.smsHref}
-                className="flex items-center gap-3 rounded-sm border border-border bg-card px-5 py-4 font-display font-bold uppercase tracking-wide shadow-card"
-              >
-                <MessageSquare className="size-5 text-primary" aria-hidden="true" /> Text{" "}
-                {site.phoneDisplay}
+              <a href={site.mailHref} className="flex items-center gap-3">
+                <MessageSquare className="size-5" /> {site.email}
               </a>
+              <p className="flex items-center gap-3">
+                <MapPin className="size-5" /> Jacksonville / Northeast Florida
+              </p>
+            </div>
+            <div className="mt-8 flex items-center gap-3 text-sm text-white/60">
+              <CheckCircle2 className="size-5 text-white" /> Requested appointment times are
+              confirmed by our team.
             </div>
           </div>
           <EstimateForm />
         </div>
       </section>
-
-      <FaqSection items={faqs.slice(0, 8)} title="Tile, flooring & remodeling questions" />
-      <CtaBand />
     </>
+  );
+}
+
+function HomeServicePanel({
+  title,
+  eyebrow,
+  text,
+  image,
+  to,
+}: {
+  title: string;
+  eyebrow: string;
+  text: string;
+  image: string;
+  to: "/remodeling-services" | "/commercial";
+}) {
+  return (
+    <article className="relative min-h-[430px] overflow-hidden border-b border-white/15 lg:border-b-0 lg:border-r">
+      <img
+        src={image}
+        alt=""
+        className="absolute inset-0 size-full object-cover grayscale"
+        width={1200}
+        height={800}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/65 to-black/20" />
+      <div className="relative flex min-h-[430px] max-w-xl flex-col justify-center p-8 sm:p-14">
+        <p className="text-xs uppercase tracking-[0.3em] text-white/55">{eyebrow}</p>
+        <h2 className="mt-4 text-4xl sm:text-5xl">{title}</h2>
+        <p className="mt-4 leading-relaxed text-white/70">{text}</p>
+        <Button asChild variant="outlineLight" className="mt-7 w-fit">
+          <Link to={to}>
+            Learn More <ArrowRight />
+          </Link>
+        </Button>
+      </div>
+    </article>
   );
 }
