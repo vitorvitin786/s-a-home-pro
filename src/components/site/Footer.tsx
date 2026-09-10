@@ -13,6 +13,12 @@ const quickLinks = [
   { label: "Free Estimate", to: "/contact" },
 ] as const;
 
+const socialLinks = [
+  { href: site.social.facebook, label: "Facebook", icon: Facebook },
+  { href: site.social.instagram, label: "Instagram", icon: Instagram },
+  { href: site.social.google, label: "Google Business Profile", icon: Star },
+].filter((link): link is typeof link & { href: string } => Boolean(link.href));
+
 export function Footer() {
   return (
     <footer className="bg-charcoal pb-24 text-charcoal-foreground md:pb-0">
@@ -37,29 +43,22 @@ export function Footer() {
               <MapPin className="size-4" aria-hidden="true" /> Jacksonville & Northeast Florida
             </p>
           </div>
-          <div className="mt-5 flex gap-3">
-            <a
-              href={site.social.facebook}
-              aria-label="Facebook page (coming soon)"
-              className="grid size-10 place-items-center rounded-sm border border-charcoal-foreground/20 hover:border-primary hover:text-primary"
-            >
-              <Facebook className="size-4" />
-            </a>
-            <a
-              href={site.social.instagram}
-              aria-label="Instagram profile (coming soon)"
-              className="grid size-10 place-items-center rounded-sm border border-charcoal-foreground/20 hover:border-primary hover:text-primary"
-            >
-              <Instagram className="size-4" />
-            </a>
-            <a
-              href={site.social.google}
-              aria-label="Google Business Profile (coming soon)"
-              className="grid size-10 place-items-center rounded-sm border border-charcoal-foreground/20 hover:border-primary hover:text-primary"
-            >
-              <Star className="size-4" />
-            </a>
-          </div>
+          {socialLinks.length > 0 && (
+            <div className="mt-5 flex gap-3">
+              {socialLinks.map(({ href, label, icon: Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  className="grid size-10 place-items-center rounded-sm border border-charcoal-foreground/20 hover:border-primary hover:text-primary"
+                >
+                  <Icon className="size-4" aria-hidden="true" />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
 
         <div>
@@ -97,22 +96,13 @@ export function Footer() {
             Northeast Florida.
           </p>
           <div className="mt-5 flex flex-col gap-3">
-            <a
-              href={site.telHref}
-              className="rounded-sm bg-primary px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide text-primary-foreground"
-            >
+            <a href={site.telHref} className="rounded-sm bg-primary px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide text-primary-foreground">
               Call Now
             </a>
-            <a
-              href={site.smsHref}
-              className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide"
-            >
+            <a href={site.smsHref} className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide">
               Text Us
             </a>
-            <Link
-              to="/contact"
-              className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide"
-            >
+            <Link to="/contact" className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide">
               Get Free Estimate
             </Link>
           </div>
@@ -121,9 +111,7 @@ export function Footer() {
 
       <div className="border-t border-charcoal-foreground/10">
         <div className="container-x flex flex-col gap-2 py-6 text-xs text-charcoal-foreground/60 md:flex-row md:items-center md:justify-between">
-          <p>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
-          </p>
+          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
           <p>Tile · LVP & Vinyl Flooring · Bathroom & Kitchen Remodeling · Jacksonville, FL</p>
         </div>
       </div>
