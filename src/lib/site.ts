@@ -53,7 +53,7 @@ export const navLinks = [
   { label: "Bathrooms", to: "/bathroom-remodeling-jacksonville" },
   { label: "Kitchens", to: "/kitchen-remodeling-jacksonville" },
   { label: "Remodeling Services", to: "/remodeling-services" },
-  { label: "Our Work", to: "/portfolio" },
+  { label: "Commercial", to: "/commercial" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ] as const;

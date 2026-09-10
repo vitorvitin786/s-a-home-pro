@@ -110,11 +110,31 @@ export function InlineCta({ label = "Get a Free Estimate" }: { label?: string })
 }
 
 const steps = [
-  { n: "01", t: "Contact Us", d: "Call, text or submit the free estimate form with your project details." },
-  { n: "02", t: "Project Evaluation", d: "We discuss the project, measurements, materials and the finish you want." },
-  { n: "03", t: "Clear Estimate", d: "You receive an understandable estimate with the scope of work spelled out." },
-  { n: "04", t: "Professional Installation", d: "We protect and prepare the work area, then complete the installation or remodel." },
-  { n: "05", t: "Final Walkthrough", d: "We inspect the finished work with you and confirm every detail is properly completed." },
+  {
+    n: "01",
+    t: "Contact Us",
+    d: "Call, text or submit the free estimate form with your project details.",
+  },
+  {
+    n: "02",
+    t: "Project Evaluation",
+    d: "We discuss the project, measurements, materials and the finish you want.",
+  },
+  {
+    n: "03",
+    t: "Clear Estimate",
+    d: "You receive an understandable estimate with the scope of work spelled out.",
+  },
+  {
+    n: "04",
+    t: "Professional Installation",
+    d: "We protect and prepare the work area, then complete the installation or remodel.",
+  },
+  {
+    n: "05",
+    t: "Final Walkthrough",
+    d: "We inspect the finished work with you and confirm every detail is properly completed.",
+  },
 ];
 
 export function HowItWorks() {
@@ -142,13 +162,22 @@ export function HowItWorks() {
 }
 
 const reasons = [
-  ["10+ Years of Hands-On Experience", "A decade-plus of real jobsite work in residential and commercial remodeling."],
+  [
+    "10+ Years of Hands-On Experience",
+    "A decade-plus of real jobsite work in residential and commercial remodeling.",
+  ],
   ["Tile & Flooring Specialists", "Tile and LVP/vinyl are what we do most — and what we do best."],
-  ["Attention to Detail", "Straight lines, level floors, clean grout joints and tight transitions."],
+  [
+    "Attention to Detail",
+    "Straight lines, level floors, clean grout joints and tight transitions.",
+  ],
   ["Direct Communication", "You talk to the person doing the work, not a call center."],
   ["Professional Workmanship", "Proper prep, proper materials and finishes made to last."],
   ["Clear Estimates", "Written scope in plain language so you know exactly what's included."],
-  ["Complete Remodeling Capabilities", "Demolition, drywall, painting and finish work under one crew."],
+  [
+    "Complete Remodeling Capabilities",
+    "Demolition, drywall, painting and finish work under one crew.",
+  ],
   ["Clean & Organized Job Sites", "Protected floors, contained dust and daily cleanup."],
   ["Local Jacksonville Company", "We live and work here in Northeast Florida."],
 ];

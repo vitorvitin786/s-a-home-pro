@@ -26,17 +26,13 @@ export function Header() {
       <div className="border-b border-border bg-background/95 backdrop-blur">
         <div className="container-x flex h-16 items-center justify-between gap-4 md:h-20">
           <Link to="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
-            <span className="grid size-10 place-items-center rounded-sm bg-charcoal font-display text-sm font-extrabold text-charcoal-foreground">
-              S&A
-            </span>
-            <span className="leading-tight">
-              <span className="block font-display text-base font-extrabold uppercase tracking-tight md:text-lg">
-                S&A Homes Services
-              </span>
-              <span className="block text-[11px] uppercase tracking-[0.18em] text-muted-foreground">
-                Tile · Flooring · Remodeling
-              </span>
-            </span>
+            <img
+              src="/sa-homes-logo.png"
+              alt="S&A Homes Services"
+              width={180}
+              height={134}
+              className="h-12 w-auto object-contain md:h-16"
+            />
           </Link>
 
           <nav className="hidden items-center gap-1 xl:flex" aria-label="Main">

@@ -9,7 +9,7 @@ const quickLinks = [
   { label: "Kitchen Remodeling", to: "/kitchen-remodeling-jacksonville" },
   { label: "Floor Prep & Leveling", to: "/floor-preparation-leveling" },
   { label: "Pavers & Outdoor", to: "/pavers" },
-  { label: "Portfolio", to: "/portfolio" },
+  { label: "Commercial Projects", to: "/commercial" },
   { label: "Free Estimate", to: "/contact" },
 ] as const;
 
@@ -24,6 +24,13 @@ export function Footer() {
     <footer className="bg-charcoal pb-24 text-charcoal-foreground md:pb-0">
       <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
+          <img
+            src="/sa-homes-logo.png"
+            alt="S&A Homes Services"
+            width={220}
+            height={164}
+            className="mb-4 h-24 w-auto object-contain"
+          />
           <p className="font-display text-lg font-extrabold uppercase tracking-tight">
             {site.name}
           </p>
@@ -96,13 +103,22 @@ export function Footer() {
             Northeast Florida.
           </p>
           <div className="mt-5 flex flex-col gap-3">
-            <a href={site.telHref} className="rounded-sm bg-primary px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide text-primary-foreground">
+            <a
+              href={site.telHref}
+              className="rounded-sm bg-primary px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide text-primary-foreground"
+            >
               Call Now
             </a>
-            <a href={site.smsHref} className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide">
+            <a
+              href={site.smsHref}
+              className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide"
+            >
               Text Us
             </a>
-            <Link to="/contact" className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide">
+            <Link
+              to="/contact"
+              className="rounded-sm border-2 border-charcoal-foreground/30 px-5 py-3 text-center font-display text-sm font-bold uppercase tracking-wide"
+            >
               Get Free Estimate
             </Link>
           </div>
@@ -111,7 +127,9 @@ export function Footer() {
 
       <div className="border-t border-charcoal-foreground/10">
         <div className="container-x flex flex-col gap-2 py-6 text-xs text-charcoal-foreground/60 md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} {site.name}. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          </p>
           <p>Tile · LVP & Vinyl Flooring · Bathroom & Kitchen Remodeling · Jacksonville, FL</p>
         </div>
       </div>

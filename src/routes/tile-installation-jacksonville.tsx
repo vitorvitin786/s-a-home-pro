@@ -37,22 +37,22 @@ function TilePage() {
       body={
         <>
           <p>
-            Tile is our strongest specialty. After more than 10 years of hands-on installation
-            work, we know that a beautiful tile job is decided before the first tile is set — in
-            the floor prep, the layout, the waterproofing and the substrate.
+            Tile is our strongest specialty. After more than 10 years of hands-on installation work,
+            we know that a beautiful tile job is decided before the first tile is set — in the floor
+            prep, the layout, the waterproofing and the substrate.
           </p>
           <h2 className="pt-2 text-2xl">A tile installer who preps first</h2>
           <p>
             Uneven concrete, flexing subfloors and out-of-square walls are the reason tile cracks,
             grout fails and large-format tile shows lippage. We flatten and prepare the surface,
-            plan the layout so cuts land where they should, and use leveling systems on
-            large-format tile to keep the finished plane tight.
+            plan the layout so cuts land where they should, and use leveling systems on large-format
+            tile to keep the finished plane tight.
           </p>
           <h2 className="pt-2 text-2xl">Custom tile showers built to stay dry</h2>
           <p>
             Shower walls, curbs, benches and niches are detailed with proper waterproofing
-            preparation and sloped, correctly drained pans. The result is a shower that looks
-            custom and performs for the long run — not one that needs to be torn out in five years.
+            preparation and sloped, correctly drained pans. The result is a shower that looks custom
+            and performs for the long run — not one that needs to be torn out in five years.
           </p>
           <h2 className="pt-2 text-2xl">Backsplashes, floors and wall tile</h2>
           <p>

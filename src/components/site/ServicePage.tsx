@@ -59,7 +59,10 @@ export function ServicePage({
           <SectionHeading eyebrow="What's Included" title="Everything this service covers" center />
           <div className="mt-12 grid gap-6 md:grid-cols-2">
             {blocks.map((b) => (
-              <div key={b.title} className="rounded-md border border-border bg-card p-6 shadow-card">
+              <div
+                key={b.title}
+                className="rounded-md border border-border bg-card p-6 shadow-card"
+              >
                 <h3 className="text-lg">{b.title}</h3>
                 <div className="mt-4">
                   <CheckList items={b.items} columns={1} />

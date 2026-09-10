@@ -58,7 +58,7 @@ Make the phone number clickable on mobile.
 CORE SERVICES:
 
 1. TILE INSTALLATION
-    This should be one of the most important sections of the website.
+   This should be one of the most important sections of the website.
 
 Include:
 • Porcelain tile

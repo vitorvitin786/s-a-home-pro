@@ -11,7 +11,10 @@ export const Route = createFileRoute("/lvp-vinyl-flooring-jacksonville")({
         content:
           "LVP installation in Jacksonville FL — waterproof luxury vinyl plank, whole-house flooring, subfloor prep and floor leveling. Free estimates: (904) 554-7517.",
       },
-      { property: "og:title", content: "LVP & Vinyl Flooring Jacksonville FL | S&A Homes Services" },
+      {
+        property: "og:title",
+        content: "LVP & Vinyl Flooring Jacksonville FL | S&A Homes Services",
+      },
       {
         property: "og:description",
         content:
@@ -37,9 +40,9 @@ function LvpPage() {
       body={
         <>
           <p>
-            LVP is the most popular flooring in Northeast Florida for good reason: it is
-            waterproof, durable, comfortable underfoot and it handles Florida humidity far better
-            than most alternatives. It is also the flooring most often installed badly.
+            LVP is the most popular flooring in Northeast Florida for good reason: it is waterproof,
+            durable, comfortable underfoot and it handles Florida humidity far better than most
+            alternatives. It is also the flooring most often installed badly.
           </p>
           <h2 className="pt-2 text-2xl">Flat floors first</h2>
           <p>

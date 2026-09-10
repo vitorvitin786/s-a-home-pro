@@ -9,7 +9,6 @@ import {
   CheckList,
   FaqSection,
   HowItWorks,
-  ReviewsSection,
   SectionHeading,
   ServiceAreaSection,
   WhyChoose,
@@ -17,7 +16,6 @@ import {
 import heroImg from "@/assets/tile-installer-jacksonville-fl.jpg";
 import tileImg from "@/assets/tile-shower-remodel-jacksonville.jpg";
 import lvpImg from "@/assets/lvp-vinyl-flooring-jacksonville.jpg";
-import kitchenImg from "@/assets/kitchen-remodeling-jacksonville.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -28,7 +26,10 @@ export const Route = createFileRoute("/")({
         content:
           "Professional tile installation, LVP/vinyl flooring and complete home remodeling in Jacksonville & Northeast Florida. 10+ years experience. Free estimates — (904) 554-7517.",
       },
-      { property: "og:title", content: "Tile & Flooring Contractor Jacksonville FL | S&A Homes Services" },
+      {
+        property: "og:title",
+        content: "Tile & Flooring Contractor Jacksonville FL | S&A Homes Services",
+      },
       {
         property: "og:description",
         content:
@@ -86,7 +87,12 @@ const services = [
     text: "Flooring and tile removal, bathroom and kitchen demolition, prep and debris cleanup.",
   },
   {
-    title: "General Home Remodeling",
+    title: "Commercial Projects",
+    to: "/commercial",
+    text: "Flooring, tile and remodeling support for businesses, property managers, builders and general contractors.",
+  },
+  {
+    title: "Residential & General Remodeling",
     to: "/remodeling-services",
     text: "Project not listed? Talk to us. If it involves improving your home, we can help you figure out the best way to get it done.",
   },
@@ -106,18 +112,15 @@ function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal via-charcoal/85 to-charcoal/40" />
         <div className="container-x relative py-16 md:py-28">
-          <p className="eyebrow">Jacksonville & Northeast Florida · 10+ Years Experience</p>
+          <p className="eyebrow">Quality spaces. Stronger tomorrows.</p>
           <h1 className="mt-4 max-w-4xl text-4xl leading-[1.05] md:text-6xl">
-            Quality Remodeling.
+            Residential &amp; Commercial Projects
             <br />
-            Professional Tile &amp; Flooring.
-            <br />
-            <span className="text-primary">Built to Last.</span>
+            <span className="text-primary">Built to a Higher Standard.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-charcoal-foreground/85 md:text-lg">
-            S&amp;A Homes Services provides professional tile, LVP/vinyl flooring and complete home
-            remodeling services throughout Jacksonville and Northeast Florida. More than 10 years of
-            hands-on experience and attention to every detail.
+            Tile, flooring and remodeling for homes and businesses across Jacksonville and Northeast
+            Florida—with more than 10 years of hands-on experience and attention to every detail.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
             <Button asChild variant="cta" size="xl">
@@ -130,16 +133,18 @@ function Home() {
             </Button>
           </div>
           <ul className="mt-10 grid max-w-3xl gap-3 text-sm sm:grid-cols-3">
-            {["Free, clear estimates", "Tile & LVP specialists", "Clean, organized job sites"].map(
-              (t) => (
-                <li
-                  key={t}
-                  className="rounded-sm border border-charcoal-foreground/15 bg-charcoal-foreground/5 px-4 py-3 font-semibold"
-                >
-                  {t}
-                </li>
-              ),
-            )}
+            {[
+              "Residential & commercial",
+              "Tile & LVP specialists",
+              "Contractor partnerships welcome",
+            ].map((t) => (
+              <li
+                key={t}
+                className="rounded-sm border border-charcoal-foreground/15 bg-charcoal-foreground/5 px-4 py-3 font-semibold"
+              >
+                {t}
+              </li>
+            ))}
           </ul>
         </div>
       </section>
@@ -219,8 +224,8 @@ function Home() {
         <div className="container-x">
           <SectionHeading
             eyebrow="Full-Service Remodeling"
-            title="Everything we do for Jacksonville homeowners"
-            text="From a single backsplash to a complete bathroom or kitchen renovation."
+            title="Everything we do across Northeast Florida"
+            text="From a residential backsplash to commercial flooring and larger remodeling projects."
             center
           />
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -238,7 +243,8 @@ function Home() {
                 <h3 className="text-xl">{s.title}</h3>
                 <p className="mt-3 flex-1 text-sm text-muted-foreground">{s.text}</p>
                 <span className="mt-5 inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-widest text-primary">
-                  Learn more <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                  Learn more{" "}
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
             ))}
@@ -253,47 +259,8 @@ function Home() {
 
       <WhyChoose />
 
-      {/* PORTFOLIO TEASER */}
-      <section className="section bg-sand">
-        <div className="container-x">
-          <SectionHeading
-            eyebrow="Our Work"
-            title="Recent tile, flooring & remodeling projects"
-            text="Browse finished showers, floors, kitchens and full remodels across Northeast Florida."
-            center
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              { img: tileImg, alt: "Tile shower remodel in Jacksonville FL", label: "Tile & Showers" },
-              { img: lvpImg, alt: "LVP flooring installation in Jacksonville FL", label: "LVP / Vinyl" },
-              { img: kitchenImg, alt: "Kitchen remodel with tile backsplash in Jacksonville FL", label: "Kitchens" },
-            ].map((p) => (
-              <figure key={p.label} className="overflow-hidden rounded-md shadow-card">
-                <img
-                  src={p.img}
-                  alt={p.alt}
-                  loading="lazy"
-                  width={1600}
-                  height={1000}
-                  className="h-64 w-full object-cover"
-                />
-                <figcaption className="bg-card px-5 py-4 font-display text-sm font-bold uppercase tracking-widest">
-                  {p.label}
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="mt-10 text-center">
-            <Button asChild variant="charcoal" size="xl">
-              <Link to="/portfolio">View Our Full Portfolio</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
       <HowItWorks />
       <ServiceAreaSection />
-      <ReviewsSection />
 
       {/* ESTIMATE */}
       <section id="estimate" className="section bg-sand">
@@ -309,7 +276,8 @@ function Home() {
                 href={site.telHref}
                 className="flex items-center gap-3 rounded-sm border border-border bg-card px-5 py-4 font-display font-bold uppercase tracking-wide shadow-card"
               >
-                <Phone className="size-5 text-primary" aria-hidden="true" /> Call {site.phoneDisplay}
+                <Phone className="size-5 text-primary" aria-hidden="true" /> Call{" "}
+                {site.phoneDisplay}
               </a>
               <a
                 href={site.smsHref}

@@ -37,9 +37,9 @@ function BathPage() {
       body={
         <>
           <p>
-            A bathroom is the hardest-working room in the house and the least forgiving of shortcuts.
-            We rebuild bathrooms from the studs out when needed — demolition, waterproofing, tile,
-            vanity, flooring, drywall, paint and fixtures handled by one crew.
+            A bathroom is the hardest-working room in the house and the least forgiving of
+            shortcuts. We rebuild bathrooms from the studs out when needed — demolition,
+            waterproofing, tile, vanity, flooring, drywall, paint and fixtures handled by one crew.
           </p>
           <h2 className="pt-2 text-2xl">Custom tile showers</h2>
           <p>
@@ -49,9 +49,9 @@ function BathPage() {
           </p>
           <h2 className="pt-2 text-2xl">One crew, start to finish</h2>
           <p>
-            You don&rsquo;t need to coordinate a tile setter, a drywall contractor and a painter.
-            We manage the sequence, keep the space protected and clean, and walk the finished
-            bathroom with you before we call it done.
+            You don&rsquo;t need to coordinate a tile setter, a drywall contractor and a painter. We
+            manage the sequence, keep the space protected and clean, and walk the finished bathroom
+            with you before we call it done.
           </p>
         </>
       }

@@ -53,7 +53,12 @@ function PaversPage() {
       blocks={[
         {
           title: "Paver Projects",
-          items: ["Paver patios", "Walkways and paths", "Entry and porch pavers", "Patio extensions"],
+          items: [
+            "Paver patios",
+            "Walkways and paths",
+            "Entry and porch pavers",
+            "Patio extensions",
+          ],
         },
         {
           title: "Installation",
@@ -70,7 +75,11 @@ function PaversPage() {
         },
         {
           title: "Also Available",
-          items: ["Demolition of old surfaces", "Debris removal", "Coordination with interior remodels"],
+          items: [
+            "Demolition of old surfaces",
+            "Debris removal",
+            "Coordination with interior remodels",
+          ],
         },
       ]}
     />
