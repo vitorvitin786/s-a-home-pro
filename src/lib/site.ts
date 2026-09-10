@@ -67,12 +67,6 @@ export const localBusinessSchema = {
   telephone: "+1-904-554-7517",
   email: site.email,
   areaServed: serviceAreas.map((a) => ({ "@type": "City", name: `${a}, FL` })),
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Jacksonville",
-    addressRegion: "FL",
-    addressCountry: "US",
-  },
   knowsAbout: [
     "Tile installation",
     "Luxury vinyl plank flooring",
