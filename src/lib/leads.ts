@@ -1,8 +1,8 @@
 const endpoint = "https://api.web3forms.com/submit";
 
 export async function submitLead(form: FormData) {
-  const accessKey = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
-  if (!accessKey) throw new Error("Website form is awaiting its Web3Forms access key.");
+  const accessKey =
+    import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "5831a730-e9f2-4195-9540-13e485e89e02";
 
   form.set("access_key", accessKey);
   form.set("from_name", "S&A Homes Services Website");
