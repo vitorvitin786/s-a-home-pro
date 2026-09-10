@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CheckCircle2, Phone, MessageSquare, Mail } from "lucide-react";
+import { CheckCircle2, Mail, MessageSquare, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { serviceOptions, site } from "@/lib/site";
 
@@ -16,10 +16,10 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
         <CheckCircle2 className="mx-auto size-12 text-primary" aria-hidden="true" />
         <h3 className="mt-4 text-xl">Your estimate request is ready</h3>
         <p className="mx-auto mt-3 max-w-md text-muted-foreground">
-          Your email app should have opened with the project details. Send that email to finish your request.
+          Your email app should have opened with the project details. Send the email to finish your request.
         </p>
         <p className="mt-4 text-sm text-muted-foreground">
-          If email is not convenient, call or text {site.phoneDisplay} directly.
+          If email is not available, call or text {site.phoneDisplay} directly.
         </p>
         <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild variant="cta" size="lg">
@@ -58,7 +58,7 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
       "Project Description:",
       get("description"),
       "",
-      "Note: Photos were selected in the form, but the customer should attach them manually to the email before sending.",
+      "Photos: Please attach project photos to the email before sending if needed.",
     ].join("\n");
 
     window.location.href = `${site.mailHref}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -85,7 +85,7 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
         </div>
         <div>
           <label className={labelClass} htmlFor="zip">ZIP Code *</label>
-          <input id="zip" name="zip" inputMode="numeric" autoComplete="postal-code" required className={`mt-2 ${fieldClass}`} />
+          <input id="zip" name="zip" inputMode="numeric" autoComplete="postal-code" pattern="[0-9]{5}" maxLength={5} required className={`mt-2 ${fieldClass}`} />
         </div>
         <div>
           <label className={labelClass} htmlFor="address">Project Address <span className="font-normal text-muted-foreground">(optional)</span></label>
@@ -116,10 +116,9 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
           <label className={labelClass} htmlFor="description">Project Description *</label>
           <textarea id="description" name="description" rows={5} required placeholder="Tell us about the rooms, materials, current flooring and what you'd like done." className={`mt-2 ${fieldClass}`} />
         </div>
-        <div className="sm:col-span-2">
-          <label className={labelClass} htmlFor="photos">Project Photos <span className="font-normal text-muted-foreground">(optional)</span></label>
-          <input id="photos" name="photos" type="file" accept="image/*" multiple className="mt-2 w-full rounded-sm border border-dashed border-input bg-muted/40 px-4 py-3 text-sm file:mr-4 file:rounded-sm file:border-0 file:bg-charcoal file:px-4 file:py-2 file:font-display file:text-xs file:font-bold file:uppercase file:text-charcoal-foreground" />
-          <p className="mt-2 text-xs text-muted-foreground">Photos can help us understand the project. If your email app opens, attach the selected photos before sending.</p>
+        <div className="sm:col-span-2 rounded-sm border border-dashed border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+          <p className="font-semibold text-foreground">Have project photos?</p>
+          <p className="mt-1">After your email opens, attach your photos there before sending. The website does not upload or store customer photos yet.</p>
         </div>
       </div>
 
