@@ -1,5 +1,18 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, Building2, CheckCircle2, HardHat, Home as HomeIcon, MapPin, MessageSquare, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Building2,
+  CheckCircle2,
+  Hammer,
+  HardHat,
+  Home as HomeIcon,
+  MapPin,
+  MessageSquare,
+  Phone,
+  ShieldCheck,
+  Sparkles,
+  Wrench,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { EstimateForm } from "@/components/site/EstimateForm";
 import { site } from "@/lib/site";
@@ -9,51 +22,241 @@ import lvpImg from "@/assets/lvp-vinyl-flooring-jacksonville.jpg";
 import installImg from "@/assets/tile-installer-jacksonville-fl.jpg";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [
-    { title: "Residential & Commercial Remodeling Jacksonville | S&A Homes Services" },
-    { name: "description", content: "Tile, LVP flooring and remodeling for homes and businesses across Jacksonville and Northeast Florida. Free project estimates: (904) 554-7517." },
-    { property: "og:title", content: "S&A Homes Services | Jacksonville Remodeling" },
-    { property: "og:description", content: "Residential and commercial tile, flooring and remodeling across Northeast Florida." },
-  ], links: [{ rel: "canonical", href: "/" }] }), component: Home,
+  head: () => ({
+    meta: [
+      { title: "Residential & Commercial Remodeling Jacksonville | S&A Homes Services" },
+      {
+        name: "description",
+        content:
+          "Tile, LVP flooring and remodeling for homes and businesses across Jacksonville and Northeast Florida. Free project estimates: (904) 554-7517.",
+      },
+      { property: "og:title", content: "S&A Homes Services | Jacksonville Remodeling" },
+      {
+        property: "og:description",
+        content: "Residential and commercial tile, flooring and remodeling across Northeast Florida.",
+      },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+  }),
+  component: Home,
 });
 
 const services = [
-  { title: "Tile Installation", text: "Expert tile installation for floors, showers, walls and backsplashes.", to: "/tile-installation-jacksonville", image: tileImg },
-  { title: "LVP / Vinyl Flooring", text: "Durable flooring installed over carefully prepared surfaces.", to: "/lvp-vinyl-flooring-jacksonville", image: lvpImg },
-  { title: "Bathroom Remodeling", text: "Functional bathrooms, custom showers and lasting finish work.", to: "/bathroom-remodeling-jacksonville", image: tileImg },
-  { title: "Kitchen Remodeling", text: "Kitchens rebuilt around your space, needs and preferred finish.", to: "/kitchen-remodeling-jacksonville", image: heroImg },
-  { title: "Floor Leveling", text: "Preparation and leveling for a clean, stable installation.", to: "/floor-preparation-leveling", image: installImg },
-  { title: "Commercial Projects", text: "Flooring and remodeling support for businesses and contractors.", to: "/commercial", image: heroImg },
+  {
+    title: "Kitchen Remodeling",
+    text: "Kitchens rebuilt around your space, needs and preferred finish.",
+    to: "/kitchen-remodeling-jacksonville",
+    image: heroImg,
+  },
+  {
+    title: "Bathroom Remodeling",
+    text: "Functional bathrooms, custom showers and lasting finish work.",
+    to: "/bathroom-remodeling-jacksonville",
+    image: tileImg,
+  },
+  {
+    title: "LVP / Vinyl Flooring",
+    text: "Durable flooring installed over carefully prepared surfaces.",
+    to: "/lvp-vinyl-flooring-jacksonville",
+    image: lvpImg,
+  },
+  {
+    title: "Tile Installation",
+    text: "Expert tile installation for floors, showers, walls and backsplashes.",
+    to: "/tile-installation-jacksonville",
+    image: installImg,
+  },
+] as const;
+
+const trustItems = [
+  [HomeIcon, "Residential Remodeling"],
+  [Building2, "Commercial Projects"],
+  [Wrench, "Quality Craftsmanship"],
+  [ShieldCheck, "10+ Years Experience"],
 ] as const;
 
 function Home() {
-  return <>
-    <section className="relative min-h-[650px] overflow-hidden border-b border-primary/30 bg-[#07101e] text-white">
-      <img src={heroImg} alt="Modern kitchen remodeling project" width={1600} height={1104} className="absolute inset-0 size-full object-cover grayscale" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#050a13] via-[#07101e]/90 to-[#0877e8]/15" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_30%,rgba(29,139,255,.18),transparent_32rem)]" />
-      <div className="container-x relative flex min-h-[650px] items-center py-16"><div className="max-w-3xl">
-        <p className="text-xs font-semibold uppercase tracking-[0.35em] text-primary">Building a Better Tomorrow</p>
-        <h1 className="mt-5 text-5xl leading-[0.95] sm:text-6xl md:text-8xl">S&amp;A Homes Services</h1>
-        <p className="mt-4 font-display text-2xl uppercase tracking-[0.18em] text-white/85 sm:text-3xl">Residential &amp; Commercial Projects</p>
-        <div className="my-6 flex items-center gap-3 text-sm tracking-[0.45em] text-primary"><span className="h-px w-16 bg-primary" /> ★★★★★</div>
-        <p className="font-display text-2xl">Tile · Flooring · Remodeling</p>
-        <p className="mt-3 max-w-xl text-base leading-relaxed text-white/72">Trusted craftsmanship for homes and businesses across Jacksonville and Northeast Florida.</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Button asChild variant="cta" size="xl"><Link to="/contact">Get a Free Estimate <ArrowRight /></Link></Button><Button asChild variant="outlineLight" size="xl"><a href={site.smsHref}><MessageSquare /> Text Us</a></Button></div>
-      </div></div>
-      <div className="absolute bottom-6 right-6 hidden border border-primary/40 bg-[#07101e]/85 px-8 py-5 text-center shadow-[0_0_35px_rgba(30,136,255,.12)] lg:block"><p className="text-xs uppercase tracking-[0.4em] text-primary">Build · Remodel · Improve</p><p className="mt-2 font-display text-xl uppercase tracking-[0.18em]">Always a Higher Standard</p></div>
-    </section>
+  return (
+    <>
+      <section className="relative overflow-hidden border-b border-primary/20 bg-[#050b14] text-white">
+        <img
+          src={heroImg}
+          alt="Modern kitchen remodeling project in Jacksonville"
+          width={1600}
+          height={1104}
+          className="absolute inset-0 size-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#02060d]/95 via-[#06101d]/78 to-[#07101e]/25" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,rgba(24,165,255,.18),transparent_26rem)]" />
 
-    <section className="border-b border-primary/20 bg-[#0b1422] text-white"><div className="container-x grid divide-y divide-primary/15 md:grid-cols-4 md:divide-x md:divide-y-0">{[[HomeIcon,"Residential & Commercial"],[Building2,"We Accept Commercial Work"],[HardHat,"Contractors & Builders Welcome"],[MapPin,"Jacksonville / Northeast Florida"]].map(([Icon,label]) => <div key={String(label)} className="flex items-center gap-4 px-5 py-6"><Icon className="size-7 shrink-0 stroke-[1.25] text-primary" aria-hidden="true" /><p className="text-xs font-semibold uppercase tracking-[0.14em]">{String(label)}</p></div>)}</div></section>
+        <div className="container-x relative flex min-h-[620px] items-center py-12 sm:min-h-[680px] md:py-20">
+          <div className="max-w-[760px]">
+            <p className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.3em] text-primary sm:text-xs">
+              <span className="h-px w-9 bg-primary" /> Building a Better Tomorrow
+            </p>
+            <h1 className="mt-5 max-w-3xl font-sans text-[2.75rem] font-black uppercase leading-[.98] tracking-[-0.035em] sm:text-6xl md:text-7xl">
+              Quality <span className="text-primary">Remodeling</span> for a Brighter Tomorrow
+            </h1>
+            <p className="mt-6 max-w-xl text-base leading-7 text-white/76 sm:text-lg">
+              Residential and commercial remodeling services across Jacksonville and Northeast Florida.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button asChild variant="cta" size="xl">
+                <Link to="/contact">
+                  Get a Free Estimate <ArrowRight />
+                </Link>
+              </Button>
+              <Button asChild variant="outlineLight" size="xl">
+                <Link to="/remodeling-services">View Our Work</Link>
+              </Button>
+            </div>
 
-    <section className="border-b border-primary/20 bg-[#101a28] py-16 text-white md:py-20"><div className="container-x"><div className="flex items-center gap-5"><p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Our Services</p><span className="h-px flex-1 bg-primary/35" /><p className="hidden text-xs uppercase tracking-[0.3em] text-white/55 sm:block">Quality work. Lasting value.</p></div><div className="mt-8 grid gap-x-4 gap-y-9 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">{services.map(service => <article key={service.title} className="group"><div className="overflow-hidden border border-primary/25"><img src={service.image} alt="" loading="lazy" width={800} height={650} className="aspect-[4/3] w-full object-cover grayscale transition duration-500 group-hover:scale-105 group-hover:grayscale-0" /></div><h2 className="mt-4 font-sans text-sm font-semibold uppercase tracking-[0.08em]">{service.title}</h2><p className="mt-2 text-sm leading-relaxed text-white/60">{service.text}</p><Link to={service.to} className="mt-4 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-primary">Learn More <ArrowRight className="size-4" /></Link></article>)}</div></div></section>
+            <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-5 border-t border-white/15 pt-6 sm:grid-cols-4">
+              {trustItems.map(([Icon, label]) => (
+                <div key={label} className="flex items-center gap-3">
+                  <Icon className="size-7 shrink-0 text-primary" strokeWidth={1.8} aria-hidden="true" />
+                  <span className="text-[10px] font-bold uppercase leading-4 tracking-[0.08em] text-white/90">
+                    {label}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section className="grid border-b border-primary/20 bg-[#07101e] text-white lg:grid-cols-2"><HomeServicePanel title="Residential Services" eyebrow="For Your Home" text="From single-room updates to full renovations, we bring careful preparation and clean execution to every project." image={lvpImg} to="/remodeling-services" /><HomeServicePanel title="Commercial Services" eyebrow="For Your Business" text="We accept commercial work and partner with businesses, property managers, builders and general contractors." image={heroImg} to="/commercial" /></section>
+      <section className="border-b border-primary/20 bg-[#07101e] py-10 text-white md:py-16">
+        <div className="container-x">
+          <div className="rounded-xl border border-white/15 bg-white/[.025] p-5 shadow-[0_20px_60px_rgba(0,0,0,.2)] sm:p-7 lg:p-9">
+            <p className="text-xs font-bold uppercase tracking-[0.26em] text-primary">Free Estimate</p>
+            <h2 className="mt-3 font-sans text-2xl font-black uppercase tracking-[-0.02em] sm:text-3xl">
+              Let’s Talk About Your Project
+            </h2>
+            <p className="mt-2 text-sm text-white/60 sm:text-base">
+              Tell us what you need and our team will follow up with you.
+            </p>
+            <div className="mt-6">
+              <EstimateForm />
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <section className="border-b border-primary/25 bg-[#0d2038] py-9 text-white"><div className="container-x flex flex-col items-start justify-between gap-7 lg:flex-row lg:items-center"><div className="flex max-w-3xl items-start gap-5"><HardHat className="mt-1 size-10 shrink-0 stroke-[1.25] text-primary" /><div><h2 className="text-2xl uppercase tracking-[0.06em]">Looking for contractors &amp; general contractors</h2><p className="mt-2 text-sm leading-relaxed text-white/65">S&amp;A Homes Services is open to working with contractors, builders and project teams on residential and commercial work.</p></div></div><Button asChild variant="cta" size="xl"><Link to="/commercial">Let’s Work Together <ArrowRight /></Link></Button></div></section>
+      <section className="border-b border-primary/20 bg-[#050b14] py-12 text-white md:py-18">
+        <div className="container-x">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-primary">
+                <span className="h-px w-8 bg-primary" /> Our Services
+              </p>
+              <h2 className="mt-3 font-sans text-3xl font-black uppercase tracking-[-0.03em] sm:text-4xl">
+                What We Do
+              </h2>
+            </div>
+            <Button asChild variant="outlineLight" className="w-fit">
+              <Link to="/remodeling-services">View All Services</Link>
+            </Button>
+          </div>
 
-    <section id="estimate" className="border-b border-primary/20 bg-[#08111f] py-16 text-white md:py-20"><div className="container-x grid gap-10 lg:grid-cols-[.9fr_1.1fr] lg:items-start"><div><p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">Get a Free Estimate</p><h2 className="mt-4 text-4xl sm:text-6xl">Let’s Bring Your Vision to Life</h2><p className="mt-4 text-white/65">Residential or commercial—we’re here to help.</p><div className="mt-8 space-y-4 text-sm"><a href={site.telHref} className="flex items-center gap-3"><Phone className="size-5 text-primary" /> {site.phoneDisplay}</a><a href={site.mailHref} className="flex items-center gap-3"><MessageSquare className="size-5 text-primary" /> {site.email}</a><p className="flex items-center gap-3"><MapPin className="size-5 text-primary" /> Jacksonville / Northeast Florida</p></div><div className="mt-8 flex items-center gap-3 text-sm text-white/60"><CheckCircle2 className="size-5 text-primary" /> Requested appointment times are confirmed by our team.</div></div><EstimateForm /></div></section>
-  </>;
+          <div className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            {services.map((service) => (
+              <article
+                key={service.title}
+                className="group overflow-hidden rounded-lg border border-white/15 bg-[#0b1624] transition hover:-translate-y-1 hover:border-primary/50"
+              >
+                <div className="overflow-hidden">
+                  <img
+                    src={service.image}
+                    alt=""
+                    loading="lazy"
+                    width={800}
+                    height={650}
+                    className="aspect-[4/3] w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-5">
+                  <Hammer className="size-7 text-primary" aria-hidden="true" />
+                  <h3 className="mt-4 font-sans text-lg font-black uppercase leading-tight">{service.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-white/58">{service.text}</p>
+                  <Link
+                    to={service.to}
+                    className="mt-4 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-primary"
+                  >
+                    Learn More <ArrowRight className="size-4" />
+                  </Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-primary/20 bg-[#091321] py-12 text-white md:py-16">
+        <div className="container-x grid gap-8 lg:grid-cols-[1fr_.9fr] lg:items-center">
+          <div>
+            <p className="flex items-center gap-3 text-xs font-bold uppercase tracking-[0.25em] text-primary">
+              <span className="h-px w-8 bg-primary" /> Why Choose Us
+            </p>
+            <h2 className="mt-3 font-sans text-3xl font-black uppercase tracking-[-0.03em] sm:text-4xl">
+              Built on Trust
+            </h2>
+            <p className="mt-4 max-w-2xl leading-7 text-white/65">
+              S&amp;A Homes Services brings hands-on remodeling experience, careful preparation and dependable communication to residential and commercial projects.
+            </p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {["Residential & commercial work", "Jacksonville & Northeast Florida", "Contractors & builders welcome", "Tile, flooring & full remodeling"].map((item) => (
+              <div key={item} className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/[.03] p-4">
+                <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
+                <p className="text-sm font-semibold text-white/85">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-primary/20 bg-[#07101e] py-10 text-white">
+        <div className="container-x flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex max-w-3xl items-start gap-4">
+            <HardHat className="mt-1 size-9 shrink-0 text-primary" aria-hidden="true" />
+            <div>
+              <h2 className="font-sans text-2xl font-black uppercase tracking-[-0.02em]">
+                Contractors &amp; Builders Welcome
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-white/60">
+                We’re open to residential and commercial partnerships with builders, contractors and project teams.
+              </p>
+            </div>
+          </div>
+          <Button asChild variant="cta" size="lg">
+            <Link to="/commercial">
+              Work With Us <ArrowRight />
+            </Link>
+          </Button>
+        </div>
+      </section>
+
+      <section className="bg-[#050b14] py-12 text-white md:py-16">
+        <div className="container-x grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center">
+          <div>
+            <Sparkles className="size-8 text-primary" aria-hidden="true" />
+            <p className="mt-4 text-xs font-bold uppercase tracking-[0.25em] text-primary">Ready to Get Started?</p>
+            <h2 className="mt-3 font-sans text-3xl font-black uppercase tracking-[-0.03em]">Bring Your Project to Life</h2>
+            <p className="mt-3 text-white/60">Call, text or request a free estimate online.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-3">
+            <a href={site.telHref} className="flex items-center justify-center gap-2 rounded-md border border-white/15 px-4 py-4 font-bold hover:border-primary/50 hover:bg-primary/5">
+              <Phone className="size-5 text-primary" /> Call
+            </a>
+            <a href={site.smsHref} className="flex items-center justify-center gap-2 rounded-md border border-white/15 px-4 py-4 font-bold hover:border-primary/50 hover:bg-primary/5">
+              <MessageSquare className="size-5 text-primary" /> Text
+            </a>
+            <Link to="/contact" className="flex items-center justify-center gap-2 rounded-md bg-primary px-4 py-4 font-bold text-primary-foreground hover:bg-primary/90">
+              <MapPin className="size-5" /> Free Estimate
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
+  );
 }
-
-function HomeServicePanel({title,eyebrow,text,image,to}:{title:string;eyebrow:string;text:string;image:string;to:"/remodeling-services"|"/commercial"}) { return <article className="relative min-h-[430px] overflow-hidden border-b border-primary/20 lg:border-b-0 lg:border-r"><img src={image} alt="" className="absolute inset-0 size-full object-cover grayscale" width={1200} height={800}/><div className="absolute inset-0 bg-gradient-to-r from-[#050a13]/95 via-[#07101e]/75 to-[#0877e8]/20"/><div className="relative flex min-h-[430px] max-w-xl flex-col justify-center p-8 sm:p-14"><p className="text-xs uppercase tracking-[0.3em] text-primary">{eyebrow}</p><h2 className="mt-4 text-4xl sm:text-5xl">{title}</h2><p className="mt-4 leading-relaxed text-white/70">{text}</p><Button asChild variant="outlineLight" className="mt-7 w-fit"><Link to={to}>Learn More <ArrowRight /></Link></Button></div></article>; }
