@@ -11,13 +11,17 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-primary/20 bg-[#050b14]/95 text-white shadow-[0_8px_30px_rgba(0,0,0,.22)] backdrop-blur-xl">
       <div className="container-x flex h-[74px] items-center justify-between gap-3 md:h-24">
         <Link to="/" className="flex min-w-0 items-center" onClick={() => setOpen(false)}>
-          <img
-            src="/sa-homes-logo.png"
-            alt="S&A Homes Services"
-            width={180}
-            height={134}
-            className="h-12 w-auto max-w-[145px] object-contain md:h-20 md:max-w-none"
-          />
+          <div className="flex items-center gap-2.5" aria-label="S&A Homes Services home">
+            <svg viewBox="0 0 64 58" role="img" aria-label="S&A roof mark" className="h-11 w-12 shrink-0 md:h-14 md:w-16" fill="none">
+              <path d="M4 30 31 6l29 24M13 25V52h38V25M23 52V34h16v18M29 16h7v9h-7z" stroke="#63B5FF" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round"/>
+              <path d="M5 56h54" stroke="#E6F3FF" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[13px] font-extrabold tracking-[.045em] text-white sm:text-base md:text-xl">S&amp;A HOMES</span>
+              <span className="text-[10px] font-semibold tracking-[.24em] text-[#A9D7FF] sm:text-xs">SERVICES</span>
+              <span className="mt-1 hidden text-[9px] uppercase tracking-[.12em] text-white/70 sm:block">Remodeling &amp; Renovation</span>
+            </span>
+          </div>
         </Link>
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Main">
