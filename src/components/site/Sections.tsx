@@ -270,10 +270,10 @@ export function ReviewsSection() {
         </div>
         <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
           <Button asChild variant="charcoal" size="xl">
-            <a href={site.social.google}>Read Our Google Reviews</a>
+            <a href={site.social.google ?? undefined}>Read Our Google Reviews</a>
           </Button>
           <Button asChild variant="outlineDark" size="xl">
-            <a href={site.social.google}>Leave Us a Review</a>
+            <a href={site.social.google ?? undefined}>Leave Us a Review</a>
           </Button>
         </div>
       </div>

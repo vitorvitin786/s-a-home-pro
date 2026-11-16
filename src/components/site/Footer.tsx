@@ -13,7 +13,7 @@ const quickLinks = [
   { label: "Free Estimate", to: "/contact" },
 ] as const;
 
-const socialLinks = [
+const socialLinks: { href: string | null; label: string; icon: import("lucide-react").LucideIcon }[] = [
   { href: site.social.facebook, label: "Facebook", icon: Facebook },
   { href: site.social.instagram, label: "Instagram", icon: Instagram },
   { href: site.social.google, label: "Google Business Profile", icon: Star },
@@ -59,7 +59,7 @@ export function Footer() {
               {socialLinks.map(({ href, label, icon: Icon }) => (
                 <a
                   key={label}
-                  href={href}
+                  href={href ?? undefined}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={label}
