@@ -178,3 +178,14 @@
 .dark .bg-background h1, .dark .bg-background h2, .dark .bg-background h3 { color: var(--color-foreground); }
 .dark .bg-sand .text-muted-foreground, .dark .bg-card .text-muted-foreground { color: oklch(0.81 0.02 245); }
 .dark a:focus-visible, .dark button:focus-visible { outline: 2px solid oklch(0.78 0.16 245); outline-offset: 3px; }
+
+/* Dark-site sections must never fall back to white or dark-on-dark text. */
+.dark main .section { background-color: #07101e; color: #f3f7ff; }
+.dark main .section.bg-sand { background-color: #0c192a; }
+.dark main .section .bg-card { background-color: #101e30; color: #f3f7ff; }
+.dark main .section .bg-sand { background-color: #132238; color: #f3f7ff; }
+.dark main .section h1, .dark main .section h2, .dark main .section h3,
+.dark main .section li, .dark main .section li span { color: #f3f7ff; }
+.dark main .section .text-muted-foreground { color: #b9c8dc; }
+.dark main .section .eyebrow, .dark main .section .text-primary { color: #69b7ff; }
+.dark main .section input, .dark main .section textarea, .dark main .section select { color: #f3f7ff; }
