@@ -33,7 +33,7 @@ export function ServicePage({
 }) {
   return (
     <>
-      <PageHero eyebrow={eyebrow} title={h1} text={intro} image={image} imageAlt={imageAlt} />
+      <PageHero eyebrow={eyebrow} title={h1} text={intro} {...(image ? { image } : {})} {...(imageAlt ? { imageAlt } : {})} />
 
       <section className="section">
         <div className="container-x grid gap-12 lg:grid-cols-[1.15fr_1fr]">
