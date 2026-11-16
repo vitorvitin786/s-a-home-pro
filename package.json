@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "build:hostinger": "vite build --config vite.hostinger.config.ts"
+    "build:hostinger": "NITRO_PRESET=node-server vite build"
   },
   "overrides": {
     "rolldown": "1.2.1",
