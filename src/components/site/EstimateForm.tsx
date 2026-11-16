@@ -252,7 +252,7 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
         <Mail aria-hidden="true" /> {submitting ? "Sending…" : "Request My Free Estimate"}
       </Button>
       <p className="mt-3 text-center text-xs text-muted-foreground">
-        Your information is sent directly to {site.email}.
+        Your request is securely saved for our team to review.
       </p>
     </form>
   );
