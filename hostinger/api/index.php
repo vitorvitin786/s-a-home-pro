@@ -38,7 +38,7 @@ if ($action==='submit' && $method==='POST') {
  if($clean['fullName']==='' || $clean['description']==='' || !filter_var($clean['email'],FILTER_VALIDATE_EMAIL) || !preg_match('/^[0-9]{5}$/',$clean['zip']) || strlen(preg_replace('/\\D/','',$clean['phone']))<7) reply(422,['error'=>'Please check required fields']);
  $row=['id'=>bin2hex(random_bytes(16)),'created_at'=>gmdate('c'),'status'=>'new','notes'=>'',
  'full_name'=>$clean['fullName'],'phone'=>$clean['phone'],'email'=>$clean['email'],'project_type'=>$clean['projectType'],'zip'=>$clean['zip'],'address'=>$clean['address'],'service'=>$clean['service'],'sqft'=>$clean['sqft'],'contact_method'=>$clean['contactMethod'],'start_date'=>$clean['startDate'],'description'=>$clean['description']];
- $h=fopen(storePath(),'ab'); if(!$h) reply(500,['error'=>'Storage unavailable']); flock($h,LOCK_EX); $ok=fwrite($h,json_encode($row,JSON_UNESCAPED_UNICODE)."\\n")!==false; fflush($h); flock($h,LOCK_UN); fclose($h);
+ $h=fopen(storePath(),'ab'); if(!$h) reply(500,['error'=>'Storage unavailable']); flock($h,LOCK_EX); $ok=fwrite($h,json_encode($row,JSON_UNESCAPED_UNICODE)."\n")!==false; fflush($h); flock($h,LOCK_UN); fclose($h);
  if(!$ok) reply(500,['error'=>'Could not save request']);
  reply(200,['ok'=>true]);
 }
@@ -50,6 +50,6 @@ if ($action==='update' && $method==='POST') {
  if(isset($d['notes']) && (!is_string($d['notes']) || strlen($d['notes'])>5000)) reply(422,['error'=>'Invalid notes']);
  $p=storePath(); $h=fopen($p,'c+'); if(!$h) reply(500,['error'=>'Storage unavailable']); flock($h,LOCK_EX); $rows=[]; rewind($h);
  while(($line=fgets($h))!==false) { $row=json_decode($line,true); if(!is_array($row))continue; if(hash_equals((string)$row['id'],$id)) { if(isset($d['status']))$row['status']=$d['status']; if(isset($d['notes']))$row['notes']=$d['notes']; } $rows[]=$row; }
- rewind($h); ftruncate($h,0); foreach($rows as $row)fwrite($h,json_encode($row,JSON_UNESCAPED_UNICODE)."\\n"); fflush($h); flock($h,LOCK_UN); fclose($h); reply(200,['ok'=>true]);
+ rewind($h); ftruncate($h,0); foreach($rows as $row)fwrite($h,json_encode($row,JSON_UNESCAPED_UNICODE)."\n"); fflush($h); flock($h,LOCK_UN); fclose($h); reply(200,['ok'=>true]);
 }
 reply(404,['error'=>'Not found']);
