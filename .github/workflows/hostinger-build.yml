@@ -1,0 +1,23 @@
+name: Build Hostinger Premium website
+on:
+  push:
+    branches: [hostinger-premium-migration]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: bun install --frozen-lockfile
+      - run: bun run build:hostinger
+      - run: php -l hostinger/api/index.php
+      - run: mkdir -p dist/api && cp hostinger/api/index.php hostinger/api/.htaccess dist/api/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hostinger-public-html
+          path: dist/
+          include-hidden-files: true
