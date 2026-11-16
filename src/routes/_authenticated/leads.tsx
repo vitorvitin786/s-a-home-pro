@@ -3,8 +3,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { Mail, MessageSquare, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
-import type { Tables } from "@/integrations/supabase/types";
+import { api, type Lead } from "@/lib/hostinger-api";
 
 export const Route = createFileRoute("/_authenticated/leads")({
   head: () => ({
@@ -21,7 +20,7 @@ export const Route = createFileRoute("/_authenticated/leads")({
   component: Leads,
 });
 
-type Lead = Tables<"estimate_requests">;
+
 const STATUSES = ["new", "contacted", "estimate scheduled", "quoted", "won", "lost"] as const;
 const field =
   "rounded-sm border border-input bg-background px-3 py-2 text-sm outline-none focus:border-primary";
@@ -41,14 +40,8 @@ function Leads() {
   } = useQuery({
     queryKey: ["is-admin"],
     queryFn: async () => {
-      const { data: u } = await supabase.auth.getUser();
-      if (!u.user) throw new Error("Please sign in again.");
-      const { data, error } = await supabase.rpc("has_role", {
-        _user_id: u.user.id,
-        _role: "admin",
-      });
-      if (error) throw error;
-      return !!data;
+      const session = await api.session();
+      return session.authenticated;
     },
   });
   const {
@@ -59,12 +52,8 @@ function Leads() {
     queryKey: ["leads"],
     enabled: isAdmin === true,
     queryFn: async () => {
-      const { data, error } = await supabase
-        .from("estimate_requests")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data;
+      const result = await api.leads();
+      return result.leads;
     },
   });
 
@@ -82,17 +71,16 @@ function Leads() {
 
   async function update(id: string, patch: Partial<Pick<Lead, "status" | "notes">>) {
     setSaveError("");
-    const { error } = await supabase.from("estimate_requests").update(patch).eq("id", id);
-    if (error) {
-      setSaveError("Could not save your changes. Please try again.");
-    }
+    try { const session = await api.session(); if (!session.csrf) throw new Error("Session expired"); await api.update(id, patch, session.csrf); }
+    catch { setSaveError("Could not save your changes. Please try again."); }
     await qc.invalidateQueries({ queryKey: ["leads"] });
   }
 
   async function signOut() {
     await qc.cancelQueries();
     qc.clear();
-    await supabase.auth.signOut();
+    const session = await api.session();
+    if (session.csrf) await api.logout(session.csrf);
     navigate({ to: "/auth", replace: true });
   }
 
