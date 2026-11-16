@@ -20,7 +20,7 @@ export const Route = createFileRoute("/tile-installation-jacksonville")({
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/tile-installation-jacksonville" },
     ],
-    links: [{ rel: "canonical", href: "/tile-installation-jacksonville" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/tile-installation-jacksonville" }],
   }),
   component: TilePage,
 });

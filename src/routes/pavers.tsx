@@ -18,7 +18,7 @@ export const Route = createFileRoute("/pavers")({
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/pavers" },
     ],
-    links: [{ rel: "canonical", href: "/pavers" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/pavers" }],
   }),
   component: PaversPage,
 });

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/commercial")({
           "Commercial tile, flooring and remodeling support for businesses, property managers, builders and general contractors in Jacksonville and Northeast Florida.",
       },
     ],
-    links: [{ rel: "canonical", href: "/commercial" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/commercial" }],
   }),
   component: Commercial,
 });

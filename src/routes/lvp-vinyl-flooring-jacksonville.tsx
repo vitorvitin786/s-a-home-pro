@@ -23,7 +23,7 @@ export const Route = createFileRoute("/lvp-vinyl-flooring-jacksonville")({
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/lvp-vinyl-flooring-jacksonville" },
     ],
-    links: [{ rel: "canonical", href: "/lvp-vinyl-flooring-jacksonville" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/lvp-vinyl-flooring-jacksonville" }],
   }),
   component: LvpPage,
 });

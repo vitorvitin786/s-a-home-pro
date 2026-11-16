@@ -20,7 +20,7 @@ export const Route = createFileRoute("/bathroom-remodeling-jacksonville")({
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/bathroom-remodeling-jacksonville" },
     ],
-    links: [{ rel: "canonical", href: "/bathroom-remodeling-jacksonville" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/bathroom-remodeling-jacksonville" }],
   }),
   component: BathPage,
 });

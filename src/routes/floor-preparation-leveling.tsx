@@ -20,7 +20,7 @@ export const Route = createFileRoute("/floor-preparation-leveling")({
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/floor-preparation-leveling" },
     ],
-    links: [{ rel: "canonical", href: "/floor-preparation-leveling" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/floor-preparation-leveling" }],
   }),
   component: PrepPage,
 });

@@ -36,7 +36,7 @@ export const Route = createFileRoute("/")({
         content: "Residential and commercial tile, flooring and remodeling across Northeast Florida.",
       },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/" }],
   }),
   component: Home,
 });

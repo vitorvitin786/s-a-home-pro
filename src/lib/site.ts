@@ -70,6 +70,7 @@ export const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
   name: site.name,
+  url: "https://sahomeservices.com/",
   description:
     "Tile installation, LVP and vinyl flooring, bathroom and kitchen remodeling for residential and commercial projects in Jacksonville and Northeast Florida.",
   telephone: "+1-904-554-7517",

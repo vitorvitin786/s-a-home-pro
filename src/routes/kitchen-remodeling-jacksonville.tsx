@@ -20,7 +20,7 @@ export const Route = createFileRoute("/kitchen-remodeling-jacksonville")({
       { property: "og:type", content: "article" },
       { property: "og:url", content: "/kitchen-remodeling-jacksonville" },
     ],
-    links: [{ rel: "canonical", href: "/kitchen-remodeling-jacksonville" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/kitchen-remodeling-jacksonville" }],
   }),
   component: KitchenPage,
 });

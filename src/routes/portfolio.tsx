@@ -19,7 +19,7 @@ export const Route = createFileRoute("/portfolio")({
           "Browse tile, shower, LVP/vinyl, kitchen and remodeling project examples from S&A Homes Services in Jacksonville and Northeast Florida.",
       },
     ],
-    links: [{ rel: "canonical", href: "/portfolio" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/portfolio" }],
   }),
   component: Portfolio,
 });

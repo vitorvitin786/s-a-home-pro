@@ -14,7 +14,7 @@ export const Route = createFileRoute("/contact")({
           "Contact S&A Homes Services for a free estimate on tile, LVP flooring, bathroom, kitchen and home remodeling projects in Jacksonville and Northeast Florida.",
       },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/contact" }],
   }),
   component: Contact,
 });

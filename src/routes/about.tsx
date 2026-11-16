@@ -17,7 +17,7 @@ export const Route = createFileRoute("/about")({
           "Learn about S&A Homes Services, a Jacksonville remodeling company with more than 10 years of hands-on construction and flooring experience.",
       },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/about" }],
   }),
   component: About,
 });

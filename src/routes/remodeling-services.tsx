@@ -12,7 +12,7 @@ export const Route = createFileRoute("/remodeling-services")({
           "Residential remodeling, demolition, drywall, painting, flooring and finish work in Jacksonville and Northeast Florida. Request a free estimate.",
       },
     ],
-    links: [{ rel: "canonical", href: "/remodeling-services" }],
+    links: [{ rel: "canonical", href: "https://sahomeservices.com/remodeling-services" }],
   }),
   component: RemodelingServices,
 });
