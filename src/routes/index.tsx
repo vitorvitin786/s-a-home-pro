@@ -19,7 +19,7 @@ import { site } from "@/lib/site";
 import heroImg from "@/assets/kitchen-remodeling-jacksonville.jpg";
 import tileImg from "@/assets/tile-shower-remodel-jacksonville.jpg";
 import lvpImg from "@/assets/lvp-vinyl-flooring-jacksonville.jpg";
-import installImg from "@/assets/tile-installer-jacksonville-fl.jpg";
+import installImg from "@/assets/tile-floor-finished.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
