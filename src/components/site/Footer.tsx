@@ -24,13 +24,17 @@ export function Footer() {
     <footer className="bg-charcoal pb-24 text-charcoal-foreground md:pb-0">
       <div className="container-x grid gap-10 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <img
-            src="/sa-homes-logo.png"
-            alt="S&A Homes Services"
-            width={220}
-            height={164}
-            className="mb-4 h-24 w-auto object-contain"
-          />
+          <div className="mb-5 flex items-center gap-2.5" aria-label="S&A Homes Services home">
+            <svg viewBox="0 0 64 58" role="img" aria-label="S&A roof mark" className="h-11 w-12 shrink-0 md:h-14 md:w-16" fill="none">
+              <path d="M4 30 31 6l29 24M13 25V52h38V25M23 52V34h16v18M29 16h7v9h-7z" stroke="#63B5FF" strokeWidth="3" strokeLinejoin="round" strokeLinecap="round"/>
+              <path d="M5 56h54" stroke="#E6F3FF" strokeWidth="2" strokeLinecap="round"/>
+            </svg>
+            <span className="flex flex-col leading-tight">
+              <span className="text-[13px] font-extrabold tracking-[.045em] text-white sm:text-base md:text-xl">S&amp;A HOMES</span>
+              <span className="text-[10px] font-semibold tracking-[.24em] text-[#A9D7FF] sm:text-xs">SERVICES</span>
+              <span className="mt-1 hidden text-[9px] uppercase tracking-[.12em] text-white/70 sm:block">Remodeling &amp; Renovation</span>
+            </span>
+          </div>
           <p className="font-display text-lg font-extrabold uppercase tracking-tight">
             {site.name}
           </p>
