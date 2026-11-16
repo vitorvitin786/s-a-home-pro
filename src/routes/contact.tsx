@@ -32,10 +32,10 @@ function Contact() {
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             <a
               href={site.telHref}
-              className="rounded-md border border-border bg-card p-5 shadow-card transition hover:-translate-y-0.5"
+              className="rounded-md border border-border bg-card p-5 text-card-foreground shadow-card transition hover:-translate-y-0.5 hover:border-primary/60"
             >
               <Phone className="size-6 text-primary" />
-              <h2 className="mt-4 font-display text-sm font-bold uppercase tracking-widest">
+              <h2 className="mt-4 font-display text-sm font-bold uppercase tracking-widest text-card-foreground">
                 Call
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">{site.phoneDisplay}</p>
@@ -45,7 +45,7 @@ function Contact() {
               className="rounded-md border border-border bg-card p-5 shadow-card transition hover:-translate-y-0.5"
             >
               <MessageSquare className="size-6 text-primary" />
-              <h2 className="mt-4 font-display text-sm font-bold uppercase tracking-widest">
+              <h2 className="mt-4 font-display text-sm font-bold uppercase tracking-widest text-card-foreground">
                 Text
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">{site.phoneDisplay}</p>
@@ -55,7 +55,7 @@ function Contact() {
               className="rounded-md border border-border bg-card p-5 shadow-card transition hover:-translate-y-0.5"
             >
               <Mail className="size-6 text-primary" />
-              <h2 className="mt-4 font-display text-sm font-bold uppercase tracking-widest">
+              <h2 className="mt-4 font-display text-sm font-bold uppercase tracking-widest text-card-foreground">
                 Email
               </h2>
               <p className="mt-2 break-all text-sm text-muted-foreground">{site.email}</p>
