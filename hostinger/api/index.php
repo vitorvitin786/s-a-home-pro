@@ -35,7 +35,7 @@ if ($action==='submit' && $method==='POST') {
  $d=readJson(); if(!empty($d['botcheck'])) reply(200,['ok'=>true]);
  $fields=['fullName'=>120,'phone'=>30,'email'=>200,'projectType'=>60,'zip'=>10,'address'=>300,'service'=>120,'sqft'=>30,'contactMethod'=>20,'startDate'=>20,'description'=>5000];
  $clean=[]; foreach($fields as $key=>$max) { $v=trim((string)($d[$key]??'')); if(strlen($v)>$max) reply(422,['error'=>'Field too long']); $clean[$key]=$v; }
- if($clean['fullName']==='' || $clean['description']==='' || !filter_var($clean['email'],FILTER_VALIDATE_EMAIL) || !preg_match('/^[0-9]{5}$/',$clean['zip']) || strlen(preg_replace('/\\D/','',$clean['phone']))<7) reply(422,['error'=>'Please check required fields']);
+ if($clean['fullName']==='' || $clean['description']==='' || ($clean['email']!=='' && !filter_var($clean['email'],FILTER_VALIDATE_EMAIL)) || !preg_match('/^[0-9]{5}$/',$clean['zip']) || strlen(preg_replace('/\\D/','',$clean['phone']))<7) reply(422,['error'=>'Please check required fields']);
  $row=['id'=>bin2hex(random_bytes(16)),'created_at'=>gmdate('c'),'status'=>'new','notes'=>'',
  'full_name'=>$clean['fullName'],'phone'=>$clean['phone'],'email'=>$clean['email'],'project_type'=>$clean['projectType'],'zip'=>$clean['zip'],'address'=>$clean['address'],'service'=>$clean['service'],'sqft'=>$clean['sqft'],'contact_method'=>$clean['contactMethod'],'start_date'=>$clean['startDate'],'description'=>$clean['description']];
  $h=fopen(storePath(),'ab'); if(!$h) reply(500,['error'=>'Storage unavailable']); flock($h,LOCK_EX); $ok=fwrite($h,json_encode($row,JSON_UNESCAPED_UNICODE)."\n")!==false; fflush($h); flock($h,LOCK_UN); fclose($h);
