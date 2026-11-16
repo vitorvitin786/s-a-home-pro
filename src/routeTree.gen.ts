@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AuthRouteImport } from './routes/auth'
 import { Route as BathroomRemodelingJacksonvilleRouteImport } from './routes/bathroom-remodeling-jacksonville'
 import { Route as CommercialRouteImport } from './routes/commercial'
 import { Route as ContactRouteImport } from './routes/contact'
@@ -21,15 +23,25 @@ import { Route as PaversRouteImport } from './routes/pavers'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as RemodelingServicesRouteImport } from './routes/remodeling-services'
 import { Route as TileInstallationJacksonvilleRouteImport } from './routes/tile-installation-jacksonville'
+import { Route as AuthenticatedLeadsRouteImport } from './routes/_authenticated/leads'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BathroomRemodelingJacksonvilleRoute =
@@ -87,10 +99,16 @@ const TileInstallationJacksonvilleRoute =
     path: '/tile-installation-jacksonville',
     getParentRoute: () => rootRouteImport,
   } as any)
+const AuthenticatedLeadsRoute = AuthenticatedLeadsRouteImport.update({
+  id: '/leads',
+  path: '/leads',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/bathroom-remodeling-jacksonville': typeof BathroomRemodelingJacksonvilleRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
@@ -101,10 +119,12 @@ export interface FileRoutesByFullPath {
   '/portfolio': typeof PortfolioRoute
   '/remodeling-services': typeof RemodelingServicesRoute
   '/tile-installation-jacksonville': typeof TileInstallationJacksonvilleRoute
+  '/leads': typeof AuthenticatedLeadsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/bathroom-remodeling-jacksonville': typeof BathroomRemodelingJacksonvilleRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
@@ -115,11 +135,14 @@ export interface FileRoutesByTo {
   '/portfolio': typeof PortfolioRoute
   '/remodeling-services': typeof RemodelingServicesRoute
   '/tile-installation-jacksonville': typeof TileInstallationJacksonvilleRoute
+  '/leads': typeof AuthenticatedLeadsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/about': typeof AboutRoute
+  '/auth': typeof AuthRoute
   '/bathroom-remodeling-jacksonville': typeof BathroomRemodelingJacksonvilleRoute
   '/commercial': typeof CommercialRoute
   '/contact': typeof ContactRoute
@@ -130,12 +153,14 @@ export interface FileRoutesById {
   '/portfolio': typeof PortfolioRoute
   '/remodeling-services': typeof RemodelingServicesRoute
   '/tile-installation-jacksonville': typeof TileInstallationJacksonvilleRoute
+  '/_authenticated/leads': typeof AuthenticatedLeadsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/about'
+    | '/auth'
     | '/bathroom-remodeling-jacksonville'
     | '/commercial'
     | '/contact'
@@ -146,10 +171,12 @@ export interface FileRouteTypes {
     | '/portfolio'
     | '/remodeling-services'
     | '/tile-installation-jacksonville'
+    | '/leads'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
+    | '/auth'
     | '/bathroom-remodeling-jacksonville'
     | '/commercial'
     | '/contact'
@@ -160,10 +187,13 @@ export interface FileRouteTypes {
     | '/portfolio'
     | '/remodeling-services'
     | '/tile-installation-jacksonville'
+    | '/leads'
   id:
     | '__root__'
     | '/'
+    | '/_authenticated'
     | '/about'
+    | '/auth'
     | '/bathroom-remodeling-jacksonville'
     | '/commercial'
     | '/contact'
@@ -174,11 +204,14 @@ export interface FileRouteTypes {
     | '/portfolio'
     | '/remodeling-services'
     | '/tile-installation-jacksonville'
+    | '/_authenticated/leads'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AboutRoute: typeof AboutRoute
+  AuthRoute: typeof AuthRoute
   BathroomRemodelingJacksonvilleRoute: typeof BathroomRemodelingJacksonvilleRoute
   CommercialRoute: typeof CommercialRoute
   ContactRoute: typeof ContactRoute
@@ -200,11 +233,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
       preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bathroom-remodeling-jacksonville': {
@@ -277,12 +324,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TileInstallationJacksonvilleRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/leads': {
+      id: '/_authenticated/leads'
+      path: '/leads'
+      fullPath: '/leads'
+      preLoaderRoute: typeof AuthenticatedLeadsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedLeadsRoute: typeof AuthenticatedLeadsRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedLeadsRoute: AuthenticatedLeadsRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AboutRoute: AboutRoute,
+  AuthRoute: AuthRoute,
   BathroomRemodelingJacksonvilleRoute: BathroomRemodelingJacksonvilleRoute,
   CommercialRoute: CommercialRoute,
   ContactRoute: ContactRoute,
