@@ -68,10 +68,18 @@ export function EstimateForm({ defaultService }: { defaultService?: string }) {
 
   return (
     <form
+      id="estimate"
       className="rounded-md border border-border bg-card p-6 shadow-card md:p-8"
       onSubmit={handleSubmit}
     >
-      <input type="checkbox" name="botcheck" value="1" tabIndex={-1} autoComplete="off" className="hidden" />
+      <input
+        type="checkbox"
+        name="botcheck"
+        value="1"
+        tabIndex={-1}
+        autoComplete="off"
+        className="hidden"
+      />
       <div className="grid gap-5 sm:grid-cols-2">
         <div className="sm:col-span-2">
           <label className={labelClass} htmlFor="fullName">
