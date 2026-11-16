@@ -1,8 +1,8 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable/index";
+import { api } from "@/lib/hostinger-api";
+
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -34,25 +34,12 @@ function AuthPage() {
     e.preventDefault();
     setBusy(true);
     setMsg("");
-    if (mode === "in") {
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) setMsg(error.message);
-      else navigate({ to: "/leads" });
-    } else {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: `${window.location.origin}/leads` },
-      });
-      setMsg(error ? error.message : "Check your email to confirm your account, then sign in.");
-    }
-    setBusy(false);
-  }
-
-  async function google() {
-    const r = await lovable.auth.signInWithOAuth("google", { redirect_uri: window.location.origin });
-    if (r.error) setMsg("Google sign-in failed.");
-    else if (!r.redirected) navigate({ to: "/leads" });
+    try {
+      if (mode !== "in") { setMsg("Account creation is disabled. Use the administrator credentials configured on Hostinger."); return; }
+      await api.login(email, password);
+      navigate({ to: "/leads" });
+    } catch (error) { setMsg(error instanceof Error ? error.message : "Sign in failed"); }
+    finally { setBusy(false); }
   }
 
   return (
@@ -67,13 +54,9 @@ function AuthPage() {
             {mode === "in" ? "Sign in" : "Create account"}
           </Button>
         </form>
-        <Button type="button" variant="outline" size="lg" className="mt-3 w-full" onClick={google}>
-          Continue with Google
-        </Button>
+
         {msg && <p role="alert" className="mt-4 text-sm">{msg}</p>}
-        <button type="button" className="mt-4 text-sm text-primary underline" onClick={() => setMode(mode === "in" ? "up" : "in")}>
-          {mode === "in" ? "First time? Create your account" : "Already have an account? Sign in"}
-        </button>
+
       </div>
     </section>
   );
