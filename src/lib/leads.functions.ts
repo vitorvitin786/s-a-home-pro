@@ -23,9 +23,27 @@ export const sendLead = createServerFn({ method: "POST" })
   .inputValidator((data: unknown) => LeadSchema.parse(data))
   .handler(async ({ data }) => {
     if (data.botcheck) return { ok: true };
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { error: dbError } = await supabaseAdmin.from("estimate_requests").insert({
+      full_name: data.fullName,
+      phone: data.phone,
+      email: data.email,
+      project_type: data.projectType,
+      zip: data.zip,
+      address: data.address,
+      service: data.service,
+      sqft: data.sqft,
+      contact_method: data.contactMethod,
+      start_date: data.startDate,
+      description: data.description,
+    });
+    if (dbError) console.error("Lead save failed:", dbError.message);
     const lovableKey = process.env["LOVABLE_API_KEY"];
     const outlookKey = process.env["MICROSOFT_OUTLOOK_API_KEY"];
-    if (!lovableKey || !outlookKey) throw new Error("Email is not configured.");
+    if (!lovableKey || !outlookKey) {
+      if (dbError) throw new Error("Email is not configured.");
+      return { ok: true };
+    }
 
     const lines: [string, string][] = [
       ["Name", data.fullName],
@@ -61,7 +79,7 @@ export const sendLead = createServerFn({ method: "POST" })
     });
     if (!res.ok) {
       console.error(`Outlook send failed [${res.status}]: ${await res.text()}`);
-      throw new Error("Could not send request.");
+      if (dbError) throw new Error("Could not send request.");
     }
     return { ok: true };
   });
